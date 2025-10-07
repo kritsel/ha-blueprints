@@ -1,18 +1,43 @@
-# Blueprint metadata
 blueprint:
-  name: RFLink double button switch
+  name: RF double button switch - via RFLink
   description: |
-    Automation to execute actions triggered by pressing the ON or OFF side of one of the buttons of
-    an RFLink supported double button switch. 
+    # RF double button switch - via RFLink
     
-    COCO/KAKU AWST-8802
+    This blueprint allows you to associate independent actions to the ON and OFF side of both the left or right button
+    of a double button RF switch.
+    This essentially turns your RF double button switch into a four button switch,
+    where pressing the ON side of a button can trigger an action which is completely independent of the action
+    triggered when pressing the OFF side of that same button.
+    
+    ## Advantage compared to standard RF switch behaviour as offered via the `rflink` integration.
+    
+    When integrating a double RF button switch into your homeassistant instance via the `rflink` integration,
+    the integration creates a homeassistant entity for each of the two buttons, 
+    and each of those entities has a state: `on` or `off`.
+    
+    You can then create homeassistant automations which get triggered by a *state change* of such an entity.
+    
+    However, you cannot create homeassistant automations which get triggered when you press the OFF side
+    of a button, when the homeassistant entity's state associated with that button is already `off`, 
+    because there is no state change in such a situation.
+    
+    This blueprint remedies that.
+    
+    ## Prerequisites
+    
+    * Your RF switch MUST be integrated via the `rflink` integration.
+    * The `rflink` configuration must include `fire_event: true` for the RF switch devices you want to use in 
+      automations supported by this blueprint.
+      See https://www.home-assistant.io/integrations/rflink/ for guidance.
+    
+    Examples of RF switches supported by this blueprint:
+    * COCO/KAKU AWST-8802
   
     ## More Info
   
     ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
 
 
-  #source_url: https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/ikea_e2001_e2002/ikea_e2001_e2002.yaml
   domain: automation
   homeassistant:
     min_version: 2024.10.0
@@ -68,6 +93,7 @@ blueprint:
         action:
 
 # Automation schema
+mode: single
 variables:
   # convert input tags to variables, so they can be used in templates
   left_button_entity: !input left_button_entity
@@ -129,5 +155,3 @@ actions:
                     value_template: >-
                       {{trigger.event.data.state == "off"}}
                 sequence: !input action_right_button_off
-
-mode: single
