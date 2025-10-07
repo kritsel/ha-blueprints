@@ -1,10 +1,12 @@
 blueprint:
   name: RF double button switch - via RFLink
+  domain: automation
+  author: https://github.com/kritsel
   description: |
     # RF double button switch - via RFLink
     
     This blueprint allows you to associate independent actions to the ON and OFF side of both the left or right button
-    of a double button RF switch.
+    of a double button RF (Radio Frequency) switch.
     This essentially turns your RF double button switch into a four button switch,
     where pressing the ON side of a button can trigger an action which is completely independent of the action
     triggered when pressing the OFF side of that same button.
@@ -37,33 +39,34 @@ blueprint:
   
     ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
 
-
-  domain: automation
-  homeassistant:
-    min_version: 2024.10.0
-
   # user provided inputs
   input:
     # entities representing the buttons of the RF switch
     left_button_entity:
       name: Left button entity
-      description: The homeassistant entity representing the left button.
+      description: The entity representing the left button.
       default: ''
       selector:
         entity:
           filter:
             - integration: rflink
-              domain: light, switch, binary_sensor
+              domain:
+                - light
+                - switch
+                - binary_sensor
           multiple: false
     right_button_entity:
       name: Right button entity
-      description: The homeassistant entity representing the right button.
+      description: The entity representing the right button.
       default: ''
       selector:
         entity:
           filter:
             - integration: rflink
-              domain: light, switch, binary_sensor
+              domain:
+                - light
+                - switch
+                - binary_sensor
           multiple: false
 
     # inputs for custom actions
