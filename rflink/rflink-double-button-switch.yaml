@@ -87,7 +87,7 @@ conditions:
   # and does the event contain a valid state?
   - condition: template
     value_template: >-
-      {{trigger.event.data.state in [on, off] }}
+      {{trigger.event.data.state in ["on", "off"] }}
 
 actions:
   - choose:
@@ -102,13 +102,13 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.status == on}}
+                      {{trigger.event.data.status == "on"}}
                 sequence: !input action_left_button_on
               # 'off' click
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.status == off}}
+                      {{trigger.event.data.status == "off"}}
                 sequence: !input action_left_button_off
       # right button
       - conditions:
@@ -121,13 +121,13 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.status == on}}
+                      {{trigger.event.data.status == "on"}}
                 sequence: !input action_right_button_on
               # 'off' click
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.status == off}}
+                      {{trigger.event.data.status == "off"}}
                 sequence: !input action_right_button_off
 
 mode: single
