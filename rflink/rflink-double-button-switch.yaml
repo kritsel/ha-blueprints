@@ -1,0 +1,127 @@
+# Blueprint metadata
+blueprint:
+  name: RFLink double button switch
+  description: |
+    Automation to execute actions triggered by pressing the ON or OFF side of one of the buttons of
+    an RFLink supported double button switch. 
+    
+    COCO/KAKU AWST-8802
+  
+    ## More Info
+  
+    ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
+
+
+  #source_url: https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/ikea_e2001_e2002/ikea_e2001_e2002.yaml
+  domain: automation
+  homeassistant:
+    min_version: 2024.10.0
+  input:
+    left_button_entity:
+      name: Left button entity
+      description: The homeassistant entity representing the left button.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+          multiple: false
+    right_button_entity:
+      name: Right button entity
+      description: The homeassistant entity representing the right button.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+          multiple: false
+    # inputs for custom actions
+    action_left_button_on:
+      name: (Optional) Left button 'on' press
+      description: Action to run on left button 'on' press.
+      default: []
+      selector:
+        action:
+    action_left_button_off:
+      name: (Optional) Left button 'off' press
+      description: Action to run on left button 'off' press.
+      default: []
+      selector:
+        action:
+    action_right_button_on:
+      name: (Optional) Right button 'on' press
+      description: Action to run on Right button 'on' press.
+      default: []
+      selector:
+        action:
+    action_right_button_off:
+      name: (Optional) Right button 'off' press
+      description: Action to run on right button 'off' press.
+      default: []
+      selector:
+        action:
+
+# Automation schema
+variables:
+  # convert input tags to variables, to be used in templates
+  left_button_entity: !input left_button_entity
+  right_button_entity: !input right_button_entity
+
+triggers:
+  - trigger: event
+    event_type:
+      - button_pressed
+    event_data:
+      device_id: !input left_button_entity
+  - trigger: event
+    event_type:
+      - button_pressed
+    event_data:
+      device_id: !input right_button_entity
+
+conditions:
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.state in [on, off] }}
+#  - condition: template
+#    value_template: >-
+#      {{trigger.event.data.entity_id in
+#      [left_button_entity,right_button_entity] }}
+
+
+actions:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == left_button_entity}}
+        sequence:
+          - choose:
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.status == on}}
+                sequence: !input action_left_button_on
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.status == off}}
+                sequence: !input action_left_button_off
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == right_button_entity}}
+        sequence:
+          - choose:
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.status == on}}
+                sequence: !input action_right_button_on
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.status == off}}
+                sequence: !input action_right_button_off
+
+mode: single
