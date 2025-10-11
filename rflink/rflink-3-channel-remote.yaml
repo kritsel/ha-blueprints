@@ -1,50 +1,50 @@
 blueprint:
-  name: RF double button switch - via RFLink
+  name: RF 3-channel remote control - via RFLink
   domain: automation
   author: https://github.com/kritsel
   description: |
-    # RF double button switch - via RFLink
+    description: >
+    # RF 3-channel remote control - via RFLink
     
-    This blueprint allows you to associate independent actions to the ON and OFF side of both the left or right button
-    of a double button RF (Radio Frequency) switch.
-    This essentially turns your RF double button switch into a four button switch,
-    where pressing the ON side of a button can trigger an action which is completely independent of the action
-    triggered when pressing the OFF side of that same button.
+    The RFLink integration creates a single HomeAssistant entity to represent each of the channels of 
+    a multi-channel RF (Radia Frequency) remote control. Plus an additional entity to support the 'All' or 'Group'
+    channel when the remote supports that.
+    This basic behaviour allows you to switch ON or OFF three separate entities (or group of entities 
+    when you use HomeAssistant's `group` feature) via HomeAssistant. 
     
-    ## Advantage compared to standard RF switch behaviour as offered via the `rflink` integration.
-    
-    When integrating a double RF button switch into your homeassistant instance via the `rflink` integration,
-    the integration creates a homeassistant entity for each of the two buttons, 
-    and each of those entities has a state: `on` or `off`.
-    
-    You can then create homeassistant automations which get triggered by a *state change* of such an entity.
-    
-    However, you cannot create homeassistant automations which get triggered when you press the OFF side
-    of a button, when the homeassistant entity's state associated with that button is already `off`, 
-    because there is no state change in such a situation.
-    
-    This blueprint remedies that.
+    This blueprint adds more control possibilities. 
+    It allows you to associate independent actions to the ON and OFF button for each channel. 
+    This essentially turns your RF channel remote control - meant to control *three* entities - 
+    into a *six* button remote control where the ON and OFF button for each channel can each trigger 
+    a completely independent (set of) action(s). 
     
     ## Prerequisites
     
-    * Your RF switch MUST be integrated via the `rflink` integration.
-    * The `rflink` configuration must include `fire_event: true` for the RF switch devices you want to use in 
-      automations supported by this blueprint.
-      See https://www.home-assistant.io/integrations/rflink/ for guidance.
+    * Your RF remote control MUST be integrated via the RFLink integration.
+    * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
+    the channels.
+    See https://www.home-assistant.io/integrations/rflink/ for guidance.
     
-    Examples of RF switches supported by this blueprint:
-    * COCO/KAKU AWST-8802
-  
+    Examples of RF remote controls which are expected to work with this blueprint:
+    * COCO/KAKU APCR-2300R (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)
+      (only has an ALL OFF button, no ALL ON)
+    * COCO/KAKU APC3-2300RN (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt-apc3-2300rn)
+    
+    ## 'All' or 'Group' functions
+    The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated ON and
+    OFF button. However, this functionality might not be available on every 3-channel remote control. 
+    Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON.
+    
     ## More Info
-  
+    
     ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
 
   # user provided inputs
   input:
     # entities representing the buttons of the RF switch
-    left_button_entity:
-      name: Left button entity
-      description: The entity representing the left button.
+    channel_1_entity:
+      name: Channel 1 entity
+      description: The entity representing channel 1.
       default: ''
       selector:
         entity:
@@ -55,9 +55,35 @@ blueprint:
                 - switch
                 - binary_sensor
           multiple: false
-    right_button_entity:
-      name: Right button entity
-      description: The entity representing the right button.
+    channel_2_entity:
+      name: Channel 2 entity
+      description: The entity representing channel 2.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_3_entity:
+      name: Channel 3 entity
+      description: The entity representing channel 3.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_all_entity:
+      name: All/Group channel entity
+      description: The entity representing the All or Group channel.
       default: ''
       selector:
         entity:
@@ -70,28 +96,52 @@ blueprint:
           multiple: false
 
     # inputs for custom actions
-    action_left_button_on:
-      name: (Optional) Left button 'on' press
-      description: Action to run on left button 'on' press.
+    action_channel_1_on:
+      name: (Optional) Channel 1 'on' press
+      description: Action to run on channel 1 'on' press.
       default: []
       selector:
         action:
-    action_left_button_off:
-      name: (Optional) Left button 'off' press
-      description: Action to run on left button 'off' press.
+    action_channel_1_off:
+      name: (Optional) Channel 1 'off' press
+      description: Action to run on channel 1 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_2_on:
+      name: (Optional) Channel 2 'on' press
+      description: Action to run on channel 2 'on' press.
       default: []
       selector:
         action:
-    action_right_button_on:
-      name: (Optional) Right button 'on' press
-      description: Action to run on Right button 'on' press.
+    action_channel_2_off:
+      name: (Optional) Channel 2 'off' press
+      description: Action to run on channel 2 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_3_on:
+      name: (Optional) Channel 3 'on' press
+      description: Action to run on channel 3 'on' press.
       default: []
       selector:
         action:
-    action_right_button_off:
-      name: (Optional) Right button 'off' press
-      description: Action to run on right button 'off' press.
-      default: []
+    action_channel_3_off:
+      name: (Optional) Channel 3 'off' press
+      description: Action to run on channel 3 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_all_on:
+      name: (Optional) All/Group 'on' press
+      description: Action to run on All/Group 'on' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_all_off:
+      name: (Optional) All/Group 'off' press
+      description: Action to run on All/Group 'off' press.
+      default: [ ]
       selector:
         action:
 
@@ -99,8 +149,10 @@ blueprint:
 mode: single
 variables:
   # convert input tags to variables, so they can be used in templates
-  left_button_entity: !input left_button_entity
-  right_button_entity: !input right_button_entity
+  channel_1_entity: !input channel_1_entity
+  channel_2_entity: !input channel_2_entity
+  channel_3_entity: !input channel_3_entity
+  channel_all_entity: !input channel_all_entity
 
 triggers:
   - trigger: event
@@ -112,7 +164,7 @@ conditions:
   # has the event been fired for one of the selected entities?
   - condition: template
     value_template: >-
-      {{trigger.event.data.entity_id in [left_button_entity,right_button_entity] }}
+      {{trigger.event.data.entity_id in [channel_1_entity,channel_2_entity,channel_3_entity,channel_all_entity] }}
   # and does the event contain a valid state?
   - condition: template
     value_template: >-
@@ -120,11 +172,11 @@ conditions:
 
 actions:
   - choose:
-      # left button
+      # channel 1
       - conditions:
           - condition: template
             value_template: >-
-              {{trigger.event.data.entity_id == left_button_entity}}
+              {{trigger.event.data.entity_id == channel_1_entity}}
         sequence:
           - choose:
               # 'on' click
@@ -132,18 +184,18 @@ actions:
                   - condition: template
                     value_template: >-
                       {{trigger.event.data.state == "on"}}
-                sequence: !input action_left_button_on
+                sequence: !input action_channel_1_on
               # 'off' click
               - conditions:
                   - condition: template
                     value_template: >-
                       {{trigger.event.data.state == "off"}}
-                sequence: !input action_left_button_off
-      # right button
+                sequence: !input action_channel_1_off
+      # channel 2
       - conditions:
           - condition: template
             value_template: >-
-              {{trigger.event.data.entity_id == right_button_entity}}
+              {{trigger.event.data.entity_id == channel_2_entity}}
         sequence:
           - choose:
               # 'on' click
@@ -151,10 +203,48 @@ actions:
                   - condition: template
                     value_template: >-
                       {{trigger.event.data.state == "on"}}
-                sequence: !input action_right_button_on
+                sequence: !input action_channel_2_on
               # 'off' click
               - conditions:
                   - condition: template
                     value_template: >-
                       {{trigger.event.data.state == "off"}}
-                sequence: !input action_right_button_off
+                sequence: !input action_channel_2_off
+      # channel 3
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_3_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_3_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_3_off
+      # all/group channel
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_all_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_all_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_all_off
