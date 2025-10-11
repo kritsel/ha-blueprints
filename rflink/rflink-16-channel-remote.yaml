@@ -1,0 +1,840 @@
+blueprint:
+  name: RF 16-channel remote control - via RFLink
+  domain: automation
+  author: https://github.com/kritsel
+  description: |
+    description: >
+    # RF 16-channel remote control - via RFLink
+    
+    The RFLink integration creates a single HomeAssistant entity to represent each of the channels of 
+    a multi-channel RF (Radia Frequency) remote control. Plus an additional entity to support the 'All' or 'Group'
+    channel when the remote supports that.
+    This basic behaviour allows you to switch ON or OFF sixteen separate entities (or group of entities 
+    when you use HomeAssistant's `group` feature) via HomeAssistant. 
+    
+    This blueprint adds more control possibilities. 
+    It allows you to associate independent actions to the ON and OFF button for each channel. 
+    This essentially turns your RF 16-channel remote control - meant to control *sixteen* entities - 
+    into a *thirtytwo* button remote control where the ON and OFF button for each channel can each trigger 
+    a completely independent (set of) action(s). 
+    
+    ## Prerequisites
+    
+    * Your RF remote control MUST be integrated via the RFLink integration.
+    
+    * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
+    the channels.
+    See https://www.home-assistant.io/integrations/rflink/ for guidance.
+    
+    ## Examples of RF remote controls which are expected to work with this blueprint
+    
+    * COCO/KAKU AYCT-102 (https://klikaanklikuit.nl/product/afstandsbediening-16-kanalen)
+    
+    ## 'All' or 'Group' functions
+    The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated ON and
+    OFF button. However, this functionality might not be available on every multi-channel remote control. 
+    Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON.
+    
+    ## Remote physical layout assumptions
+    The naming used in the blueprint assumes that the assumes has 4 ON and 4 OFF buttons, numbered 1, 2, 3 and 4, 
+    plus a an additional channel switch which can be in position I, II, III or IV.
+    Pressing the ON button labelled with 2 when the channel switch is on III will actually control channel 10.
+    
+    ## More Info
+    
+    ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
+
+  # user provided inputs
+  input:
+    # entities representing the buttons of the RF switch
+    channel_I_1_entity:
+      name: Channel I-1 entity
+      description: The entity representing channel I-1.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_I_2_entity:
+      name: Channel I-2 entity
+      description: The entity representing channel I-2.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_I_3_entity:
+      name: Channel I-3 entity
+      description: The entity representing channel I-3.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_I-4_entity:
+      name: Channel I-4 entity
+      description: The entity representing channel I-4.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_II_1_entity:
+      name: Channel II-1 entity
+      description: The entity representing channel II-1.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_II_2_entity:
+      name: Channel II-2 entity
+      description: The entity representing channel II-2.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_II_3_entity:
+      name: Channel II-3 entity
+      description: The entity representing channel II-3.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_II-4_entity:
+      name: Channel II-4 entity
+      description: The entity representing channel II-4.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_III_1_entity:
+      name: Channel III-1 entity
+      description: The entity representing channel III-1.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_III_2_entity:
+      name: Channel III-2 entity
+      description: The entity representing channel III-2.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_III_3_entity:
+      name: Channel III-3 entity
+      description: The entity representing channel III-3.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_III-4_entity:
+      name: Channel III-4 entity
+      description: The entity representing channel III-4.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_IV_1_entity:
+      name: Channel IV-1 entity
+      description: The entity representing channel IV-1.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_IV_2_entity:
+      name: Channel IV-2 entity
+      description: The entity representing channel IV-2.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_IV_3_entity:
+      name: Channel IV-3 entity
+      description: The entity representing channel IV-3.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    channel_IV-4_entity:
+      name: Channel IV-4 entity
+      description: The entity representing channel IV-4.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false   
+    channel_all_entity:
+      name: All/Group channel entity
+      description: The entity representing the All or Group channel.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+
+    # inputs for custom actions
+    action_channel_I_1_on:
+      name: (Optional) Channel I-1 'on' press
+      description: Action to run on channel I-1 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_I-1_off:
+      name: (Optional) Channel I-1 'off' press
+      description: Action to run on channel I-1 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_I_2_on:
+      name: (Optional) Channel I-2 'on' press
+      description: Action to run on channel I-2 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_I_2_off:
+      name: (Optional) Channel I-2 'off' press
+      description: Action to run on channel I-2 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_I_3_on:
+      name: (Optional) Channel I-3 'on' press
+      description: Action to run on channel I-3 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_I_3_off:
+      name: (Optional) Channel I-3 'off' press
+      description: Action to run on channel I-3 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_I_4_on:
+      name: (Optional) Channel I-4 'on' press
+      description: Action to run on channel I-4 'on' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_I-4_off:
+      name: (Optional) Channel I-4 'off' press
+      description: Action to run on channel I-4 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_II_1_on:
+      name: (Optional) Channel II-1 'on' press
+      description: Action to run on channel II-1 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_II-1_off:
+      name: (Optional) Channel II-1 'off' press
+      description: Action to run on channel II-1 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_II_2_on:
+      name: (Optional) Channel II-2 'on' press
+      description: Action to run on channel II-2 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_II_2_off:
+      name: (Optional) Channel II-2 'off' press
+      description: Action to run on channel II-2 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_II_3_on:
+      name: (Optional) Channel II-3 'on' press
+      description: Action to run on channel II-3 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_II_3_off:
+      name: (Optional) Channel II-3 'off' press
+      description: Action to run on channel II-3 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_II_4_on:
+      name: (Optional) Channel II-4 'on' press
+      description: Action to run on channel II-4 'on' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_II-4_off:
+      name: (Optional) Channel II-4 'off' press
+      description: Action to run on channel II-4 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_III_1_on:
+      name: (Optional) Channel III-1 'on' press
+      description: Action to run on channel III-1 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_III-1_off:
+      name: (Optional) Channel III-1 'off' press
+      description: Action to run on channel III-1 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_III_2_on:
+      name: (Optional) Channel III-2 'on' press
+      description: Action to run on channel III-2 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_III_2_off:
+      name: (Optional) Channel III-2 'off' press
+      description: Action to run on channel III-2 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_III_3_on:
+      name: (Optional) Channel III-3 'on' press
+      description: Action to run on channel III-3 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_III_3_off:
+      name: (Optional) Channel III-3 'off' press
+      description: Action to run on channel III-3 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_III_4_on:
+      name: (Optional) Channel III-4 'on' press
+      description: Action to run on channel III-4 'on' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_III-4_off:
+      name: (Optional) Channel III-4 'off' press
+      description: Action to run on channel III-4 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_IV_1_on:
+      name: (Optional) Channel IV-1 'on' press
+      description: Action to run on channel IV-1 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_IV-1_off:
+      name: (Optional) Channel IV-1 'off' press
+      description: Action to run on channel IV-1 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_IV_2_on:
+      name: (Optional) Channel IV-2 'on' press
+      description: Action to run on channel IV-2 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_IV_2_off:
+      name: (Optional) Channel IV-2 'off' press
+      description: Action to run on channel IV-2 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_IV_3_on:
+      name: (Optional) Channel IV-3 'on' press
+      description: Action to run on channel IV-3 'on' press.
+      default: []
+      selector:
+        action:
+    action_channel_IV_3_off:
+      name: (Optional) Channel IV-3 'off' press
+      description: Action to run on channel IV-3 'off' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_IV_4_on:
+      name: (Optional) Channel IV-4 'on' press
+      description: Action to run on channel IV-4 'on' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_IV-4_off:
+      name: (Optional) Channel IV-4 'off' press
+      description: Action to run on channel IV-4 'off' press.
+      default: [ ]
+      selector:
+        action:          
+    action_channel_all_on:
+      name: (Optional) All/Group 'on' press
+      description: Action to run on All/Group 'on' press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_all_off:
+      name: (Optional) All/Group 'off' press
+      description: Action to run on All/Group 'off' press.
+      default: [ ]
+      selector:
+        action:
+
+# Automation schema
+mode: single
+variables:
+  # convert input tags to variables, so they can be used in templates
+  channel_I_1_entity: !input channel_I_1_entity
+  channel_I_2_entity: !input channel_I_2_entity
+  channel_I_3_entity: !input channel_I_3_entity
+  channel_I_4_entity: !input channel_I_4_entity
+  channel_II_1_entity: !input channel_II_1_entity
+  channel_II_2_entity: !input channel_II_2_entity
+  channel_II_3_entity: !input channel_II_3_entity
+  channel_II_4_entity: !input channel_II_4_entity
+  channel_III_1_entity: !input channel_III_1_entity
+  channel_III_2_entity: !input channel_III_2_entity
+  channel_III_3_entity: !input channel_III_3_entity
+  channel_III_4_entity: !input channel_III_4_entity
+  channel_IV_1_entity: !input channel_IV_1_entity
+  channel_IV_2_entity: !input channel_IV_2_entity
+  channel_IV_3_entity: !input channel_IV_3_entity
+  channel_IV_4_entity: !input channel_IV_4_entity  
+  channel_all_entity: !input channel_all_entity
+
+triggers:
+  - trigger: event
+    event_type:
+      # RFLink fires button_pressed events for switches/lights/binary_sensors
+      - button_pressed
+
+conditions:
+  # has the event been fired for one of the selected entities?
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.entity_id in [channel_I_1_entity,channel_I_2_entity,channel_I_3_entity,channel_I_4_entity,channel_II_1_entity,channel_II_2_entity,channel_II_3_entity,channel_II_4_entity,channel_III_1_entity,channel_III_2_entity,channel_III_3_entity,channel_III_4_entity,channel_IV_1_entity,channel_IV_2_entity,channel_IV_3_entity,channel_IV_4_entity,channel_all_entity] }}
+  # and does the event contain a valid state?
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.state in ["on", "off"] }}
+
+actions:
+  - choose:
+      # channel I-1
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_I_1_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_I_1_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_I_1_off
+      # channel I-2
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_I_2_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_I_2_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_I_2_off
+      # channel I-3
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_I_3_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_I_3_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_I_3_off
+      # channel I-4
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_I_4_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_I_4_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_I_4_off
+      # channel II-1
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_II_1_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_II_1_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_II_1_off
+      # channel II-2
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_II_2_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_II_2_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_II_2_off
+      # channel II-3
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_II_3_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_II_3_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_II_3_off
+      # channel II-4
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_II_4_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_II_4_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_II_4_off
+      # channel III-1
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_III_1_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_III_1_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_III_1_off
+      # channel III-2
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_III_2_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_III_2_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_III_2_off
+      # channel III-3
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_III_3_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_III_3_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_III_3_off
+      # channel III-4
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_III_4_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_III_4_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_III_4_off
+      # channel IV-1
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_IV_1_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_IV_1_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_IV_1_off
+      # channel IV-2
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_IV_2_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_IV_2_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_IV_2_off
+      # channel IV-3
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_IV_3_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_IV_3_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_IV_3_off
+      # channel IV-4
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_IV_4_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_IV_4_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_IV_4_off
+      # all/group channel
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_all_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_channel_all_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_channel_all_off
