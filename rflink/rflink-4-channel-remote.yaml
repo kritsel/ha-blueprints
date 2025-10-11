@@ -12,6 +12,7 @@ blueprint:
     This basic behaviour allows you to switch ON or OFF four separate entities (or group of entities 
     when you use HomeAssistant's `group` feature) via HomeAssistant. 
     
+    
     This blueprint adds more control possibilities. 
     It allows you to associate independent actions to the ON and OFF button for each channel. 
     This essentially turns your RF 4-channel remote control - meant to control *four* entities - 
@@ -24,6 +25,7 @@ blueprint:
     * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
     the channels.
     See https://www.home-assistant.io/integrations/rflink/ for guidance.
+    
     
     Examples of RF remote controls which are expected to work with this blueprint:
     * COCO/KAKU APCR-2300R (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)

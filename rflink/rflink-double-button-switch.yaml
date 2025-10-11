@@ -10,6 +10,7 @@ blueprint:
     This basic behaviour allows you to switch ON or OFF two separate entities (or group of entities 
     when you use HomeAssistant's `group` feature) via HomeAssistant. 
     
+    
     This blueprint adds more control possibilities. 
     It allows you to associate independent actions to the ON and OFF side of each button. 
     This essentially turns your RF double button switch - meant to control *two* entities - 
@@ -22,6 +23,7 @@ blueprint:
     * The RFLink configuration must include `fire_event: true` for the HomeAssistant entities that represent
     the buttons.
     See https://www.home-assistant.io/integrations/rflink/ for guidance.
+    
     
     Examples of RF switches supported by this blueprint:
     * COCO/KAKU AWST-8802 (https://klikaanklikuit.nl/product/draadloze-dubbele-wandschakelaar/)
