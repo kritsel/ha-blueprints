@@ -1,0 +1,160 @@
+blueprint:
+  name: RF 3 channel remote control - via RFLink
+  domain: automation
+  author: https://github.com/kritsel
+  description: |
+    description: >
+    # RF 3-channel remote control - via RFLink
+    
+    The RFLink integration creates a single HomeAssistant entity to represent each of the channels of 
+    a multi-channel RF (Radia Frequency) remote control. Plus an additional entity to support the 'All' or 'Group'
+    channel when the remote supports that.
+    This basic behaviour allows you to switch ON or OFF three separate entities (or group of entities 
+    when you use HomeAssistant's `group` feature) via HomeAssistant. 
+    
+    This blueprint adds more control possibilities. 
+    It allows you to associate independent actions to the ON and OFF button for each channel. 
+    This essentially turns your RF channel remote control - meant to control *three* entities - 
+    into a *six* button remote control where the ON and OFF button for each channel can each trigger 
+    a completely independent (set of) action(s). 
+    
+    ## Prerequisites
+    
+    * Your RF remote control MUST be integrated via the RFLink integration.
+    * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
+    the channels.
+    See https://www.home-assistant.io/integrations/rflink/ for guidance.
+    
+    Examples of RF remote controls supported by this blueprint:
+    * COCO/KAKU APCR-2300R (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)
+      (only has an ALL OFF button, no ALL ON)
+    
+    ## 'All' or 'Group' functions
+    The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated ON and
+    OFF button. However, this functionality might not be available on every 3-channel remote control. 
+    
+    Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON.
+    
+    ## More Info
+    
+    ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
+
+  # user provided inputs
+  input:
+    # entities representing the buttons of the RF switch
+    left_button_entity:
+      name: Left button entity
+      description: The entity representing the left button.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    right_button_entity:
+      name: Right button entity
+      description: The entity representing the right button.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+
+    # inputs for custom actions
+    action_left_button_on:
+      name: (Optional) Left button 'on' press
+      description: Action to run on left button 'on' press.
+      default: []
+      selector:
+        action:
+    action_left_button_off:
+      name: (Optional) Left button 'off' press
+      description: Action to run on left button 'off' press.
+      default: []
+      selector:
+        action:
+    action_right_button_on:
+      name: (Optional) Right button 'on' press
+      description: Action to run on Right button 'on' press.
+      default: []
+      selector:
+        action:
+    action_right_button_off:
+      name: (Optional) Right button 'off' press
+      description: Action to run on right button 'off' press.
+      default: []
+      selector:
+        action:
+
+# Automation schema
+mode: single
+variables:
+  # convert input tags to variables, so they can be used in templates
+  left_button_entity: !input left_button_entity
+  right_button_entity: !input right_button_entity
+
+triggers:
+  - trigger: event
+    event_type:
+      # RFLink fires button_pressed events for switches/lights/binary_sensors
+      - button_pressed
+
+conditions:
+  # has the event been fired for one of the selected entities?
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.entity_id in [left_button_entity,right_button_entity] }}
+  # and does the event contain a valid state?
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.state in ["on", "off"] }}
+
+actions:
+  - choose:
+      # left button
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == left_button_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_left_button_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_left_button_off
+      # right button
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == right_button_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_right_button_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_right_button_off

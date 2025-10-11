@@ -1,0 +1,160 @@
+blueprint:
+  name: RF double button switch - via RFLink
+  domain: automation
+  author: https://github.com/kritsel
+  description: |
+    # RF double button switch - via RFLink
+    
+    This blueprint allows you to associate independent actions to the ON and OFF side of both the left or right button
+    of a double button RF (Radio Frequency) switch.
+    This essentially turns your RF double button switch into a four button switch,
+    where pressing the ON side of a button can trigger an action which is completely independent of the action
+    triggered when pressing the OFF side of that same button.
+    
+    ## Advantage compared to standard RF switch behaviour as offered via the `rflink` integration.
+    
+    When integrating a double RF button switch into your homeassistant instance via the `rflink` integration,
+    the integration creates a homeassistant entity for each of the two buttons, 
+    and each of those entities has a state: `on` or `off`.
+    
+    You can then create homeassistant automations which get triggered by a *state change* of such an entity.
+    
+    However, you cannot create homeassistant automations which get triggered when you press the OFF side
+    of a button, when the homeassistant entity's state associated with that button is already `off`, 
+    because there is no state change in such a situation.
+    
+    This blueprint remedies that.
+    
+    ## Prerequisites
+    
+    * Your RF switch MUST be integrated via the `rflink` integration.
+    * The `rflink` configuration must include `fire_event: true` for the RF switch devices you want to use in 
+      automations supported by this blueprint.
+      See https://www.home-assistant.io/integrations/rflink/ for guidance.
+    
+    Examples of RF switches supported by this blueprint:
+    * COCO/KAKU AWST-8802
+  
+    ## More Info
+  
+    ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
+
+  # user provided inputs
+  input:
+    # entities representing the buttons of the RF switch
+    left_button_entity:
+      name: Left button entity
+      description: The entity representing the left button.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+    right_button_entity:
+      name: Right button entity
+      description: The entity representing the right button.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - light
+                - switch
+                - binary_sensor
+          multiple: false
+
+    # inputs for custom actions
+    action_left_button_on:
+      name: (Optional) Left button 'on' press
+      description: Action to run on left button 'on' press.
+      default: []
+      selector:
+        action:
+    action_left_button_off:
+      name: (Optional) Left button 'off' press
+      description: Action to run on left button 'off' press.
+      default: []
+      selector:
+        action:
+    action_right_button_on:
+      name: (Optional) Right button 'on' press
+      description: Action to run on Right button 'on' press.
+      default: []
+      selector:
+        action:
+    action_right_button_off:
+      name: (Optional) Right button 'off' press
+      description: Action to run on right button 'off' press.
+      default: []
+      selector:
+        action:
+
+# Automation schema
+mode: single
+variables:
+  # convert input tags to variables, so they can be used in templates
+  left_button_entity: !input left_button_entity
+  right_button_entity: !input right_button_entity
+
+triggers:
+  - trigger: event
+    event_type:
+      # RFLink fires button_pressed events for switches/lights/binary_sensors
+      - button_pressed
+
+conditions:
+  # has the event been fired for one of the selected entities?
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.entity_id in [left_button_entity,right_button_entity] }}
+  # and does the event contain a valid state?
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.state in ["on", "off"] }}
+
+actions:
+  - choose:
+      # left button
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == left_button_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_left_button_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_left_button_off
+      # right button
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == right_button_entity}}
+        sequence:
+          - choose:
+              # 'on' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "on"}}
+                sequence: !input action_right_button_on
+              # 'off' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "off"}}
+                sequence: !input action_right_button_off
