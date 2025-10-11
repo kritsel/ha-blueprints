@@ -22,12 +22,13 @@ blueprint:
     ## Prerequisites
     
     * Your RF remote control MUST be integrated via the RFLink integration.
+    
     * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
     the channels.
     See https://www.home-assistant.io/integrations/rflink/ for guidance.
     
     
-    Examples of RF remote controls which are expected to work with this blueprint:
+    ## Examples of RF remote controls which are expected to work with this blueprint
     * COCO/KAKU APCR-2300R (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)
       (only has an ALL OFF button, no ALL ON)
     * COCO/KAKU AYCT-303 (https://klikaanklikuit.nl/product/afstandsbediening-met-wandplaat)

@@ -20,12 +20,14 @@ blueprint:
     ## Prerequisites
     
     * Your RF switch MUST be integrated via the RFLink integration.
+    
     * The RFLink configuration must include `fire_event: true` for the HomeAssistant entities that represent
     the buttons.
     See https://www.home-assistant.io/integrations/rflink/ for guidance.
     
     
-    Examples of RF switches supported by this blueprint:
+    ## Examples of RF switches supported by this blueprint
+   
     * COCO/KAKU AWST-8802 (https://klikaanklikuit.nl/product/draadloze-dubbele-wandschakelaar/)
     
     ## More Info
