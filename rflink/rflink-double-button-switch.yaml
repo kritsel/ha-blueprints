@@ -7,8 +7,8 @@ blueprint:
     
     The RFLink integration creates a single HomeAssistant entity to represent each of the buttons of 
     a double RF (Radia Frequency) switch.
-    This basic behaviour allows you to switch ON or OFF two separate entities (or group of entities 
-    when you use HomeAssistant's `group` feature) via HomeAssistant. 
+    This out-of-the-box RFLink behaviour allows you to switch ON or OFF those two entities 
+    via HomeAssistant automations and scripts.
     
     
     This blueprint adds more control possibilities. 
@@ -28,7 +28,18 @@ blueprint:
     
     ## Examples of RF switches supported by this blueprint
    
-    * COCO/KAKU AWST-8802 (https://klikaanklikuit.nl/product/draadloze-dubbele-wandschakelaar/)
+    * COCO/KAKU AWST-8802 (https://klikaanklikuit.nl/product/draadloze-dubbele-wandschakelaar)
+    
+    
+    ## Examples of RF remote controls which are expected to work with this blueprint
+
+    * COCO/KAKU AWST-9000 battery powered wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-enkelvoudig-dubbel-wit)
+    
+    * COCO/KAKU AGST-8802 battery powered wall switch outside (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-voor-buiten-dubbel)
+    
+    * COCO/KAKU AWMT-003 battery powered built-in switch (https://klikaanklikuit.nl/product/inbouwzender-voor-bestaande-wandschakelaars)
+    
+    * COCO/KAKU ACM-3000H2 mains powered built-in switch (https://klikaanklikuit.nl/product/inbouwschakelaar-2-in-1)
     
     ## More Info
     
@@ -66,26 +77,26 @@ blueprint:
 
     # inputs for custom actions
     action_left_button_on:
-      name: (Optional) Left button 'on' press
-      description: Action to run on left button 'on' press.
+      name: Left button ON
+      description: Action to run on left button ON click
       default: []
       selector:
         action:
     action_left_button_off:
-      name: (Optional) Left button 'off' press
-      description: Action to run on left button 'off' press.
+      name: Left button OFF
+      description: Action to run on left button OFF click
       default: []
       selector:
         action:
     action_right_button_on:
-      name: (Optional) Right button 'on' press
-      description: Action to run on Right button 'on' press.
+      name: Right button ON
+      description: Action to run on right button ON click
       default: []
       selector:
         action:
     action_right_button_off:
-      name: (Optional) Right button 'off' press
-      description: Action to run on right button 'off' press.
+      name: Right button OFF
+      description: Action to run on right button OFF click
       default: []
       selector:
         action:

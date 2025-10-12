@@ -9,8 +9,8 @@ blueprint:
     The RFLink integration creates a single HomeAssistant entity to represent each of the channels of 
     a multi-channel RF (Radia Frequency) remote control. Plus an additional entity to support the 'All' or 'Group'
     channel when the remote supports that.
-    This basic behaviour allows you to switch ON or OFF three separate entities (or group of entities 
-    when you use HomeAssistant's `group` feature) via HomeAssistant. 
+    This out-of-the-box RFLink behaviour allows you to switch ON or OFF those separate entities via HomeAssistant
+    automations and scripts.
     
     
     This blueprint adds more control possibilities. 
@@ -30,10 +30,10 @@ blueprint:
     
     ## Examples of RF remote controls which are expected to work with this blueprint
     
-    * COCO/KAKU APCR-2300R (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)
-      (only has an ALL OFF button, no ALL ON)
+    * COCO/KAKU APCR-2300R remote (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)
+      (has no ALL ON button, only ALL OFF)
     
-    * COCO/KAKU APC3-2300RN (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt-apc3-2300rn)
+    * COCO/KAKU APC3-2300RN remote (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt-apc3-2300rn)
     
     ## 'All' or 'Group' functions
     The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated ON and
@@ -102,50 +102,50 @@ blueprint:
 
     # inputs for custom actions
     action_channel_1_on:
-      name: (Optional) Channel 1 'on' press
-      description: Action to run on channel 1 'on' press.
+      name: Channel 1 ON
+      description: Action to run on channel 1 ON press.
       default: []
       selector:
         action:
     action_channel_1_off:
-      name: (Optional) Channel 1 'off' press
-      description: Action to run on channel 1 'off' press.
+      name: Channel 1 OFF
+      description: Action to run on channel 1 OFF press.
       default: [ ]
       selector:
         action:
     action_channel_2_on:
-      name: (Optional) Channel 2 'on' press
-      description: Action to run on channel 2 'on' press.
+      name: Channel 2 ON
+      description: Action to run on channel 2 ON press.
       default: []
       selector:
         action:
     action_channel_2_off:
-      name: (Optional) Channel 2 'off' press
-      description: Action to run on channel 2 'off' press.
+      name: Channel 2 OFF
+      description: Action to run on channel 2 OFF press.
       default: [ ]
       selector:
         action:
     action_channel_3_on:
-      name: (Optional) Channel 3 'on' press
-      description: Action to run on channel 3 'on' press.
+      name: Channel 3 ON
+      description: Action to run on channel 3 ON press.
       default: []
       selector:
         action:
     action_channel_3_off:
-      name: (Optional) Channel 3 'off' press
-      description: Action to run on channel 3 'off' press.
+      name: Channel 3 OFF
+      description: Action to run on channel 3 OFF press.
       default: [ ]
       selector:
         action:
     action_channel_all_on:
-      name: (Optional) All/Group 'on' press
-      description: Action to run on All/Group 'on' press.
+      name: All/Group ON
+      description: Action to run on All/Group ON press.
       default: [ ]
       selector:
         action:
     action_channel_all_off:
-      name: (Optional) All/Group 'off' press
-      description: Action to run on All/Group 'off' press.
+      name: All/Group OFF
+      description: Action to run on All/Group OFF press.
       default: [ ]
       selector:
         action:

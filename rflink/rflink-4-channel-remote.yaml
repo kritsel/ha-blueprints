@@ -9,19 +9,19 @@ blueprint:
     The RFLink integration creates a single HomeAssistant entity to represent each of the channels of 
     a multi-channel RF (Radia Frequency) remote control. Plus an additional entity to support the 'All' or 'Group'
     channel when the remote supports that.
-    This basic behaviour allows you to switch ON or OFF four separate entities (or group of entities 
-    when you use HomeAssistant's `group` feature) via HomeAssistant. 
+    This out-of-the-box RFLink behaviour allows you to switch ON or OFF those separate entities via HomeAssistant
+    automations and scripts.
     
     
     This blueprint adds more control possibilities. 
-    It allows you to associate independent actions to the ON and OFF button for each channel. 
+    It allows you to associate independent actions to the on and OFF button for each channel. 
     This essentially turns your RF 4-channel remote control - meant to control *four* entities - 
-    into an *eight* button remote control where the ON and OFF button for each channel can each trigger 
+    into an *eight* button remote control where the on and OFF button for each channel can each trigger 
     a completely independent (set of) action(s). 
     
     ## Prerequisites
     
-    * Your RF remote control MUST be integrated via the RFLink integration.
+    * Your RF remote control MUST be integrated via the RFLink integratiON press.
     
     * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
     the channels.
@@ -29,18 +29,19 @@ blueprint:
     
     
     ## Examples of RF remote controls which are expected to work with this blueprint
-    * COCO/KAKU APCR-2300R (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)
-      (only has an ALL OFF button, no ALL ON)
-    * COCO/KAKU AYCT-303 (https://klikaanklikuit.nl/product/afstandsbediening-met-wandplaat)
+    * COCO/KAKU APCR-2300R remote (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)
+      (only has an ALL OFF button, no ALL on)
+    
+    * COCO/KAKU AYCT-303 remote with wall mount (https://klikaanklikuit.nl/product/afstandsbediening-met-wandplaat)
     
     ## 'All' or 'Group' functions
-    The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated ON and
-    OFF button. However, this functionality might not be available on every multi-channel remote control. 
-    Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON.
+    The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated on and
+    OFF buttON press. However, this functionality might not be available on every multi-channel remote control. 
+    Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON press.
     
     ## More Info
     
-    ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
+    ℹ️ ClickonClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
 
   # user provided inputs
   input:
@@ -113,62 +114,62 @@ blueprint:
 
     # inputs for custom actions
     action_channel_1_on:
-      name: (Optional) Channel 1 'on' press
-      description: Action to run on channel 1 'on' press.
+      name: Channel 1 ON
+      description: Action to run on channel 1 ON press.
       default: []
       selector:
         action:
     action_channel_1_off:
-      name: (Optional) Channel 1 'off' press
-      description: Action to run on channel 1 'off' press.
+      name: Channel 1 OFF
+      description: Action to run on channel 1 OFF press.
       default: [ ]
       selector:
         action:
     action_channel_2_on:
-      name: (Optional) Channel 2 'on' press
-      description: Action to run on channel 2 'on' press.
+      name: Channel 2 ON
+      description: Action to run on channel 2 ON press.
       default: []
       selector:
         action:
     action_channel_2_off:
-      name: (Optional) Channel 2 'off' press
-      description: Action to run on channel 2 'off' press.
+      name: Channel 2 OFF
+      description: Action to run on channel 2 OFF press.
       default: [ ]
       selector:
         action:
     action_channel_3_on:
-      name: (Optional) Channel 3 'on' press
-      description: Action to run on channel 3 'on' press.
+      name: Channel 3 ON
+      description: Action to run on channel 3 ON press.
       default: []
       selector:
         action:
     action_channel_3_off:
-      name: (Optional) Channel 3 'off' press
-      description: Action to run on channel 3 'off' press.
+      name: Channel 3 OFF
+      description: Action to run on channel 3 OFF press.
       default: [ ]
       selector:
         action:
     action_channel_4_on:
-      name: (Optional) Channel 4 'on' press
-      description: Action to run on channel 4 'on' press.
+      name: Channel 4 ON
+      description: Action to run on channel 4 ON press.
       default: [ ]
       selector:
         action:
     action_channel_4_off:
-      name: (Optional) Channel 4 'off' press
-      description: Action to run on channel 4 'off' press.
+      name: Channel 4 OFF
+      description: Action to run on channel 4 OFF press.
       default: [ ]
       selector:
         action:
     action_channel_all_on:
-      name: (Optional) All/Group 'on' press
-      description: Action to run on All/Group 'on' press.
+      name: All/Group ON
+      description: Action to run on All/Group ON press.
       default: [ ]
       selector:
         action:
     action_channel_all_off:
-      name: (Optional) All/Group 'off' press
-      description: Action to run on All/Group 'off' press.
+      name: All/Group OFF
+      description: Action to run on All/Group OFF press.
       default: [ ]
       selector:
         action:

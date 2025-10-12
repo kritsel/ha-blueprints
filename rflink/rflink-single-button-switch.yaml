@@ -7,8 +7,8 @@ blueprint:
     
     The RFLink integration creates a single HomeAssistant entity to represent the button of 
     an RF (Radia Frequency) switch.
-    This basic behaviour allows you to switch ON or OFF a single entity (or group of entities 
-    when you use HomeAssistant's `group` feature) via HomeAssistant. 
+    This out-of-the-box RFLink behaviour allows you to switch ON or OFF this single entity via HomeAssistant
+    automations and scripts.
     
     
     This blueprint adds more control possibilities. 
@@ -28,7 +28,23 @@ blueprint:
     
     ## Examples of RF remote controls which are expected to work with this blueprint
     
-    * COCO/KAKU AWST-8800 (https://klikaanklikuit.nl/product/draadloze-wandschakelaar)
+    * COCO/KAKU AWST-8800 battery powered wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar)
+    
+    * COCO/KAKU AWST-9000 battery powered wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-enkelvoudig-dubbel-wit)
+    
+    * COCO/KAKU AGST-8800 battery powered outside wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-voor-buiten)
+    
+    * COCO/KAKU ACST-9900 battery powered single push button (https://klikaanklikuit.nl/product/draadloze-drukknop)
+
+    * COCO/KAKU ACCT-510 single button key chain remote (https://klikaanklikuit.nl/product/afstandsbediening-sleutelhanger)
+    
+    * COCO/KAKU AWMT-003 battery powered built-in switch (https://klikaanklikuit.nl/product/inbouwzender-voor-bestaande-wandschakelaars)
+    
+    * COCO/KAKU AWMT-230 battery powered built-in switch (https://klikaanklikuit.nl/product/inbouwzender-voor-een-extra-schakeling)
+    
+    * COCO/KAKU ACM-2000 mains powered built-in-switch (https://klikaanklikuit.nl/product/inbouwschakelaar-2000-watt)
+    
+    * COCO/KAKU AWS-3500S mains powered built-in switch (https://klikaanklikuit.nl/product/inbouwschakelaar-voor-stopcontacten)
     
     ## More Info
     
@@ -53,14 +69,14 @@ blueprint:
 
     # inputs for custom actions
     action_button_on:
-      name: (Optional) Button 'on' press
-      description: Action to run on button 'on' press.
+      name: Button ON
+      description: Action to run on button ON click
       default: []
       selector:
         action:
     action_button_off:
-      name: (Optional) Button 'off' press
-      description: Action to run on button 'off' press.
+      name: Button OFF
+      description: Action to run on button OFF click
       default: []
       selector:
         action:
