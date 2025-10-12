@@ -14,7 +14,7 @@ blueprint:
     
     
     This blueprint adds more control possibilities. 
-    It allows you to associate independent actions with the ON and OFF side of each button. 
+    It allows you to assign independent actions to the ON and OFF side of each button. 
     This essentially turns your RF double button switch 
     - originally meant to control only **two** (sets of) RF receivers like sockets/outlets - 
     into a **four** button switch. With the ON and OFF side of each button able to trigger 

@@ -16,7 +16,7 @@ blueprint:
     
     
     This blueprint adds more control possibilities. 
-    It allows you to associate independent actions with the ON and OFF button of each channel. 
+    It allows you to assign independent actions to the ON and OFF button of each channel. 
     This essentially turns your RF multi-channel remote 
     - originally meant to control only **three** (sets of) RF receivers like sockets/outlets - 
     into a **six** button switch. With the ON and OFF button of each channel able to trigger 
