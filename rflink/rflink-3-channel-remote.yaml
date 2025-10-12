@@ -19,9 +19,10 @@ blueprint:
     It allows you to assign independent actions to the ON and OFF button of each channel. 
     This essentially turns your RF multi-channel remote 
     - originally meant to control only **three** (sets of) RF receivers like sockets/outlets - 
-    into a **six** button switch. With the ON and OFF button of each channel able to trigger 
-    a completely independent (set of) action(s). So now you can for example also switch ON or OFF Zigbee or Matter 
-    controlled devices (like Philips Hue or IKEA lamps) via your RF remote.    
+    into a **eight** button switch. With the ON and OFF button of each channel (incl. the group/all channel)
+    able to trigger a completely independent (set of) action(s). 
+    So now you can for example also switch ON or OFF Zigbee or Matter controlled devices 
+    (like Philips Hue or IKEA lamps) via your RF remote.    
     
     
     ## Prerequisites
@@ -49,6 +50,10 @@ blueprint:
     
     ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
 
+    ℹ️ See this [post on Blueprints Exchange](https://community.home-assistant.io/t/blueprints-for-rf-radio-frequency-devices-integrated-via-rflink/939543) 
+    for more blueprints in this RFLink series
+    
+    ℹ️ [my blueprints on GitHub] (https://github.com/kritsel/ha-blueprints)
   # user provided inputs
   input:
     # entities representing the buttons of the RF switch

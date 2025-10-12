@@ -32,20 +32,25 @@ blueprint:
     
     ## Examples of RF remote controls which are expected to work with this blueprint
     
-    * COCO/KAKU AWST-8800 battery powered wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar)
+    * COCO/KAKU AWST-8800 single wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar)
     
-    * COCO/KAKU AWST-9000 battery powered wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-enkelvoudig-dubbel-wit)
+    * COCO/KAKU AWST-9000 single/double wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-enkelvoudig-dubbel-wit)
     
-    * COCO/KAKU AGST-8800 battery powered outside wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-voor-buiten)
+    * COCO/KAKU AGST-8800 single outside wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-voor-buiten)
     
-    * COCO/KAKU ACST-9900 battery powered single push button (https://klikaanklikuit.nl/product/draadloze-drukknop)
+    * COCO/KAKU ACST-9900 single push button (https://klikaanklikuit.nl/product/draadloze-drukknop)
 
-    * COCO/KAKU ACCT-510 single button key chain remote (https://klikaanklikuit.nl/product/afstandsbediening-sleutelhanger)
+    * COCO/KAKU ACCT-510 single channel keyring remote (https://klikaanklikuit.nl/product/afstandsbediening-sleutelhanger)
     
         
     ## More Info
     
     ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
+
+    ℹ️ See this [post on Blueprints Exchange](https://community.home-assistant.io/t/blueprints-for-rf-radio-frequency-devices-integrated-via-rflink/939543) 
+    for more blueprints in this RFLink series
+
+    ℹ️ [my blueprints on GitHub] (https://github.com/kritsel/ha-blueprints)
 
   # user provided inputs
   input:

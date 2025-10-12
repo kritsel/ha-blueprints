@@ -32,20 +32,24 @@ blueprint:
     
     ## Examples of RF switches supported by this blueprint
    
-    * COCO/KAKU AWST-8802 (https://klikaanklikuit.nl/product/draadloze-dubbele-wandschakelaar)
+    * COCO/KAKU AWST-8802 double wall switch (https://klikaanklikuit.nl/product/draadloze-dubbele-wandschakelaar)
     
     
     ## Examples of RF remote controls which are expected to work with this blueprint
 
-    * COCO/KAKU AWST-9000 battery powered wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-enkelvoudig-dubbel-wit)
+    * COCO/KAKU AWST-9000 single/double wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-enkelvoudig-dubbel-wit)
     
-    * COCO/KAKU AGST-8802 battery powered wall switch outside (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-voor-buiten-dubbel)
+    * COCO/KAKU AGST-8802 double wall switch outside (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-voor-buiten-dubbel)
 
     
     ## More Info
     
     ℹ️ ClickOnClickOff (KlikAanKlikUit in NL) is a Dutch brand that makes smart home and wireless remote control products.
 
+    ℹ️ See this [post on Blueprints Exchange](https://community.home-assistant.io/t/blueprints-for-rf-radio-frequency-devices-integrated-via-rflink/939543) 
+    for more blueprints in this RFLink series
+
+    ℹ️ [my blueprints on GitHub] (https://github.com/kritsel/ha-blueprints)
   # user provided inputs
   input:
     # entities representing the buttons of the RF switch
