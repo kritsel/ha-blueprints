@@ -53,7 +53,7 @@ blueprint:
     ℹ️ See this [post on Blueprints Exchange](https://community.home-assistant.io/t/blueprints-for-rf-radio-frequency-devices-integrated-via-rflink/939543) 
     for more blueprints in this RFLink series
     
-    ℹ️ [my blueprints on GitHub] (https://github.com/kritsel/ha-blueprints)
+    ℹ️ [my blueprints on GitHub](https://github.com/kritsel/ha-blueprints)
 
   # user provided inputs
   input:
