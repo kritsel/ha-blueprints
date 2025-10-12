@@ -2,8 +2,7 @@ blueprint:
   name: RF 4-channel remote control - via RFLink
   domain: automation
   author: https://github.com/kritsel
-  description: |
-    description: >
+  description: >
     # RF 4-channel remote control - via RFLink
     
     This blueprint adds additional control possibilities to your RF (Radio Frequency) multi-channel remote,
