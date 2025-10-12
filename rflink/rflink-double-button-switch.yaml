@@ -50,6 +50,7 @@ blueprint:
     for more blueprints in this RFLink series
 
     ℹ️ [my blueprints on GitHub](https://github.com/kritsel/ha-blueprints)
+
   # user provided inputs
   input:
     # entities representing the buttons of the RF switch
