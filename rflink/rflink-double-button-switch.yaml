@@ -15,9 +15,8 @@ blueprint:
     
     This blueprint adds more control possibilities. 
     It allows you to assign independent actions to the ON and OFF side of each button. 
-    This essentially turns your RF double button switch 
-    - originally meant to control only **two** (sets of) RF receivers like sockets/outlets - 
-    into a **four** button switch. With the ON and OFF side of each button able to trigger 
+    This essentially turns your RF double button switch - originally meant to control only **two** (sets of) 
+    RF receivers like sockets/outlets - into a **four** button switch. With the ON and OFF side of each button able to trigger 
     a completely independent (set of) action(s). So now you can for example also switch ON or OFF Zigbee or Matter 
     controlled devices (like Philips Hue or IKEA lamps) via your RF switch.
     

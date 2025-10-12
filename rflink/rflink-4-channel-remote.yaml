@@ -17,9 +17,9 @@ blueprint:
     
     This blueprint adds more control possibilities. 
     It allows you to assign independent actions to the ON and OFF button of each channel. 
-    This essentially turns your RF multi-channel remote 
-    - originally meant to control only **four** (sets of) RF receivers like sockets/outlets - 
-    into a **ten** button switch. With the ON and OFF button of each channel (incl. the group/all channel)
+    This essentially turns your RF multi-channel remote - originally meant to control only **four** (sets of)
+    RF receivers like sockets/outlets - into a **ten** button switch.
+    With the ON and OFF button of each channel (incl. the group/all channel)
     able to trigger a completely independent (set of) action(s). 
     So now you can for example also switch ON or OFF Zigbee or Matter controlled devices 
     (like Philips Hue or IKEA lamps) via your RF remote.      
@@ -37,8 +37,6 @@ blueprint:
     
     
     ## Examples of RF remote controls which are expected to work with this blueprint
-    * COCO/KAKU APCR-2300R remote (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt)
-      (only has an ALL OFF button, no ALL on)
     
     * COCO/KAKU AYCT-303 remote with wall mount (https://klikaanklikuit.nl/product/afstandsbediening-met-wandplaat)
     

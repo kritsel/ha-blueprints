@@ -18,8 +18,7 @@ blueprint:
     
     This blueprint adds more control possibilities. 
     It allows you to assign independent HomeAssistant actions to the DOWN, UP and STOP commands for the channel. 
-    This essentially turns your RF multi-channel remote 
-    - originally meant to control only a **single** cover - 
+    This essentially turns your RF multi-channel remote - originally meant to control only a **single** cover - 
     into a **three** button remote. With each DOWN, UP and STOP command for each channel
     able to trigger a completely independent (set of) HomeAssistant action(s). 
     So now you can for example also control Zigbee or Matter controlled devices 
