@@ -13,8 +13,8 @@ blueprint:
     
     This blueprint adds more control possibilities. 
     It allows you to associate independent actions to the ON and OFF side of each button. 
-    This essentially turns your RF double button switch - meant to control *two* entities - 
-    into a *four* button switch where the ON and OFF side of each button can each trigger 
+    This essentially turns your RF double button switch - meant to control **two** entities - 
+    into a **four** button switch where the ON and OFF side of each button can each trigger 
     a completely independent (set of) action(s). 
     
     ## Prerequisites
