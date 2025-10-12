@@ -25,6 +25,8 @@ blueprint:
     
     * Your RF switch MUST be integrated via the RFLink integration.
     
+    * The RFLink HomeAssistant entities you want to control belong to the `light`, `switch` or `binary_sensor` domain.
+    
     * The RFLink configuration must include `fire_event: true` for the HomeAssistant entity that represents
     the button.
     See https://www.home-assistant.io/integrations/rflink/ for guidance.
@@ -57,7 +59,7 @@ blueprint:
     # entity representing the button of the RF switch
     button_entity:
       name: Button entity
-      description: The entity representing the button.
+      description: The light/switch/binary_sensor entity representing the button.
       default: ''
       selector:
         entity:

@@ -27,7 +27,9 @@ blueprint:
     
     ## Prerequisites
     
-    * Your RF remote control MUST be integrated via the RFLink integratiON press.
+    * Your RF remote control MUST be integrated via the RFLink integration.
+    
+    * The RFLink HomeAssistant entities you want to control belong to the `light`, `switch` or `binary_sensor` domain.
     
     * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
     the channels.
@@ -58,7 +60,7 @@ blueprint:
     # entities representing the buttons of the RF switch
     channel_1_entity:
       name: Channel 1 entity
-      description: The entity representing channel 1.
+      description: The light/switch/binary_sensor entity representing channel 1.
       default: ''
       selector:
         entity:
@@ -71,7 +73,7 @@ blueprint:
           multiple: false
     channel_2_entity:
       name: Channel 2 entity
-      description: The entity representing channel 2.
+      description: The light/switch/binary_sensor entity representing channel 2.
       default: ''
       selector:
         entity:
@@ -84,7 +86,7 @@ blueprint:
           multiple: false
     channel_3_entity:
       name: Channel 3 entity
-      description: The entity representing channel 3.
+      description: The light/switch/binary_sensor entity representing channel 3.
       default: ''
       selector:
         entity:
@@ -97,7 +99,7 @@ blueprint:
           multiple: false
     channel_4_entity:
       name: Channel 4 entity
-      description: The entity representing channel 4.
+      description: The light/switch/binary_sensor entity representing channel 4.
       default: ''
       selector:
         entity:
@@ -110,7 +112,7 @@ blueprint:
           multiple: false
     channel_all_entity:
       name: All/Group channel entity
-      description: The entity representing the All or Group channel.
+      description: The light/switch/binary_sensor entity representing the All or Group channel.
       default: ''
       selector:
         entity:

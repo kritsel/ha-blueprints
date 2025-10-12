@@ -27,6 +27,8 @@ blueprint:
     
     * Your RF remote control MUST be integrated via the RFLink integration.
     
+    * The RFLink HomeAssistant entities you want to control belong to the `light`, `switch` or `binary_sensor` domain.
+    
     * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
     the channels.
     See https://www.home-assistant.io/integrations/rflink/ for guidance.
@@ -60,7 +62,7 @@ blueprint:
     # entities representing the buttons of the RF switch
     channel_I_1_entity:
       name: Channel I-1 entity
-      description: The entity representing channel I-1 (1).
+      description: The light/switch/binary_sensor entity representing channel I-1 (1).
       default: ''
       selector:
         entity:
@@ -73,7 +75,7 @@ blueprint:
           multiple: false
     channel_I_2_entity:
       name: Channel I-2 entity
-      description: The entity representing channel I-2 (2).
+      description: The light/switch/binary_sensor entity representing channel I-2 (2).
       default: ''
       selector:
         entity:
@@ -86,7 +88,7 @@ blueprint:
           multiple: false
     channel_I_3_entity:
       name: Channel I-3 entity
-      description: The entity representing channel I-3 (3).
+      description: The light/switch/binary_sensor entity representing channel I-3 (3).
       default: ''
       selector:
         entity:
@@ -99,7 +101,7 @@ blueprint:
           multiple: false
     channel_I-4_entity:
       name: Channel I-4 entity
-      description: The entity representing channel I-4 (4).
+      description: The light/switch/binary_sensor entity representing channel I-4 (4).
       default: ''
       selector:
         entity:
@@ -112,7 +114,7 @@ blueprint:
           multiple: false
     channel_II_1_entity:
       name: Channel II-1 entity
-      description: The entity representing channel II-1 (5).
+      description: The light/switch/binary_sensor entity representing channel II-1 (5).
       default: ''
       selector:
         entity:
@@ -125,7 +127,7 @@ blueprint:
           multiple: false
     channel_II_2_entity:
       name: Channel II-2 entity
-      description: The entity representing channel II-2 (6).
+      description: The light/switch/binary_sensor entity representing channel II-2 (6).
       default: ''
       selector:
         entity:
@@ -138,7 +140,7 @@ blueprint:
           multiple: false
     channel_II_3_entity:
       name: Channel II-3 entity
-      description: The entity representing channel II-3 (7).
+      description: The light/switch/binary_sensor entity representing channel II-3 (7).
       default: ''
       selector:
         entity:
@@ -151,7 +153,7 @@ blueprint:
           multiple: false
     channel_II-4_entity:
       name: Channel II-4 entity
-      description: The entity representing channel II-4 (8).
+      description: The light/switch/binary_sensor entity representing channel II-4 (8).
       default: ''
       selector:
         entity:
@@ -164,7 +166,7 @@ blueprint:
           multiple: false
     channel_III_1_entity:
       name: Channel III-1 entity
-      description: The entity representing channel III-1 (9).
+      description: The light/switch/binary_sensor entity representing channel III-1 (9).
       default: ''
       selector:
         entity:
@@ -177,7 +179,7 @@ blueprint:
           multiple: false
     channel_III_2_entity:
       name: Channel III-2 entity
-      description: The entity representing channel III-2 (10).
+      description: The light/switch/binary_sensor entity representing channel III-2 (10).
       default: ''
       selector:
         entity:
@@ -190,7 +192,7 @@ blueprint:
           multiple: false
     channel_III_3_entity:
       name: Channel III-3 entity
-      description: The entity representing channel III-3 (11).
+      description: The light/switch/binary_sensor entity representing channel III-3 (11).
       default: ''
       selector:
         entity:
@@ -203,7 +205,7 @@ blueprint:
           multiple: false
     channel_III-4_entity:
       name: Channel III-4 entity
-      description: The entity representing channel III-4 (12).
+      description: The light/switch/binary_sensor entity representing channel III-4 (12).
       default: ''
       selector:
         entity:
@@ -216,7 +218,7 @@ blueprint:
           multiple: false
     channel_IV_1_entity:
       name: Channel IV-1 entity
-      description: The entity representing channel IV-1 (13).
+      description: The light/switch/binary_sensor entity representing channel IV-1 (13).
       default: ''
       selector:
         entity:
@@ -229,7 +231,7 @@ blueprint:
           multiple: false
     channel_IV_2_entity:
       name: Channel IV-2 entity
-      description: The entity representing channel IV-2 (14).
+      description: The light/switch/binary_sensor entity representing channel IV-2 (14).
       default: ''
       selector:
         entity:
@@ -242,7 +244,7 @@ blueprint:
           multiple: false
     channel_IV_3_entity:
       name: Channel IV-3 entity
-      description: The entity representing channel IV-3 (15).
+      description: The light/switch/binary_sensor entity representing channel IV-3 (15).
       default: ''
       selector:
         entity:
@@ -255,7 +257,7 @@ blueprint:
           multiple: false
     channel_IV-4_entity:
       name: Channel IV-4 entity
-      description: The entity representing channel IV-4 (16).
+      description: The light/switch/binary_sensor entity representing channel IV-4 (16).
       default: ''
       selector:
         entity:
@@ -268,7 +270,7 @@ blueprint:
           multiple: false   
     channel_all_entity:
       name: All/Group channel entity
-      description: The entity representing the All or Group channel.
+      description: The light/switch/binary_sensor entity representing the All or Group channel.
       default: ''
       selector:
         entity:

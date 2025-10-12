@@ -1,0 +1,356 @@
+blueprint:
+  name: RF 5-channel remote control for covers - via RFLink
+  domain: automation
+  author: https://github.com/kritsel
+  description: |
+    description: >
+    # THIS BLUEPRINT IS UNTESTED
+    
+    # RF 5-channel remote control for covers - via RFLink
+    
+    This blueprint adds additional control possibilities to your RF (Radio Frequency) multi-channel remote for covers,
+    when you have integrated that remote into your HomeAssistant via the RFLink integration.
+    
+    
+    Out-of-the-box, the RFLink integration creates a single HomeAssistant entity to represent each of the remote's channels.
+    This allows you to move your covers DOWN, UP or STOP movement via HomeAssistant dashboards, automations and scripts.
+    
+    
+    This blueprint adds more control possibilities. 
+    It allows you to assign independent HomeAssistant actions to the DOWN, UP and STOP commands for each channel. 
+    This essentially turns your RF multi-channel remote 
+    - originally meant to control only **five** covers - 
+    into a **fifteen** button switch. With each DOWN, UP and STOP command for each channel
+    able to trigger a completely independent (set of) HomeAssistant action(s). 
+    So now you can for example also control Zigbee or Matter controlled devices 
+    (like Philips Hue or IKEA lamps) via your RF remote you use to control your covers.      
+
+    
+    ## Prerequisites
+    
+    * Your RF remote control MUST be integrated via the RFLink integration.
+    
+    * The RFLink HomeAssistant entities you want to control belong to the `cover` domain.
+    
+    * The RFLink configuration must include `fire_event: true` for all HomeAssistant entities that represent
+    the channels.
+    See https://www.home-assistant.io/integrations/rflink/ for guidance.
+    
+    
+    ## Examples of RF cover remote controls which work with this blueprint
+    
+    * Brel DC306 - 5 channel handheld transmitter for motors
+    
+    ## More Info
+    
+    
+    ℹ️ [my blueprints on GitHub](https://github.com/kritsel/ha-blueprints)
+  # user provided inputs
+  input:
+    # entities representing the channels supported by the RF remote control
+    channel_1_entity:
+      name: Channel 1 entity
+      description: The cover entity representing channel 1.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - cover
+          multiple: false
+    channel_2_entity:
+      name: Channel 2 entity
+      description: The cover entity representing channel 2.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - cover
+          multiple: false
+    channel_3_entity:
+      name: Channel 3 entity
+      description: The cover entity representing channel 3.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - cover
+          multiple: false
+    channel_4_entity:
+      name: Channel 4 entity
+      description: The cover entity representing channel 4.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - cover
+          multiple: false
+    channel_5_entity:
+      name: Channel 5 entity
+      description: The cover entity representing channel 5.
+      default: ''
+      selector:
+        entity:
+          filter:
+            - integration: rflink
+              domain:
+                - cover
+          multiple: false
+
+    # inputs for custom actions
+    action_channel_1_up:
+      name: Channel 1 UP
+      description: Action to run on channel 1 UP press.
+      default: []
+      selector:
+        action:
+    action_channel_1_stop:
+      name: Channel 1 STOP
+      description: Action to run on channel 1 STOP press.
+      default: [ ]
+      selector:
+        action:      
+    action_channel_1_down:
+      name: Channel 1 DOWN
+      description: Action to run on channel 1 DOWN press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_2_up:
+      name: Channel 2 UP
+      description: Action to run on channel 2 UP press.
+      default: []
+      selector:
+        action:
+    action_channel_2_stop:
+      name: Channel 2 STOP
+      description: Action to run on channel 2 STOP press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_2_down:
+      name: Channel 2 DOWN
+      description: Action to run on channel 2 DOWN press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_3_up:
+      name: Channel 3 UP
+      description: Action to run on channel 3 UP press.
+      default: []
+      selector:
+        action:
+    action_channel_3_stop:
+      name: Channel 3 STOP
+      description: Action to run on channel 3 STOP press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_3_down:
+      name: Channel 3 DOWN
+      description: Action to run on channel 3 DOWN press.
+      default: [ ]
+      selector:
+        action:       
+    action_channel_4_up:
+      name: Channel 4 UP
+      description: Action to run on channel 4 UP press.
+      default: []
+      selector:
+        action:
+    action_channel_4_stop:
+      name: Channel 4 STOP
+      description: Action to run on channel 4 STOP press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_4_down:
+      name: Channel 4 DOWN
+      description: Action to run on channel 4 DOWN press.
+      default: [ ]
+      selector:
+        action:         
+    action_channel_5_up:
+      name: Channel 5 UP
+      description: Action to run on channel 5 UP press.
+      default: []
+      selector:
+        action:
+    action_channel_5_stop:
+      name: Channel 5 STOP
+      description: Action to run on channel 5 STOP press.
+      default: [ ]
+      selector:
+        action:
+    action_channel_5_down:
+      name: Channel 5 DOWN
+      description: Action to run on channel 5 DOWN press.
+      default: [ ]
+      selector:
+        action:
+
+# Automation schema
+mode: single
+variables:
+  # convert input tags to variables, so they can be used in templates
+  channel_1_entity: !input channel_1_entity
+  channel_2_entity: !input channel_2_entity
+  channel_3_entity: !input channel_3_entity
+  channel_4_entity: !input channel_4_entity
+  channel_5_entity: !input channel_5_entity
+
+triggers:
+  - trigger: event
+    event_type:
+      # RFLink fires button_pressed events for the cover remotes
+      - button_pressed
+
+conditions:
+  # has the event been fired for one of the selected entities?
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.entity_id in [channel_1_entity,channel_2_entity,channel_3_entity,channel_4_entity,channel_5_entity] }}
+  # and does the event contain a valid state?
+  - condition: template
+    value_template: >-
+      {{trigger.event.data.state in ["up", "down", "stop"] }}
+
+actions:
+  - choose:
+      
+      # channel 1
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_1_entity}}
+        sequence:
+          - choose:
+              # 'up' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "ip"}}
+                sequence: !input action_channel_1_up
+              # 'stop' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "stop"}}
+                sequence: !input action_channel_1_stop
+              # 'down' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "down"}}
+                sequence: !input action_channel_1_down
+                
+      # channel 2
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_2_entity}}
+        sequence:
+          - choose:
+              # 'up' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "ip"}}
+                sequence: !input action_channel_2_up
+              # 'stop' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "stop"}}
+                sequence: !input action_channel_2_stop
+              # 'down' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "down"}}
+                sequence: !input action_channel_2_down
+                
+      # channel 3
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_3_entity}}
+        sequence:
+          - choose:
+              # 'up' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "ip"}}
+                sequence: !input action_channel_3_up
+              # 'stop' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "stop"}}
+                sequence: !input action_channel_3_stop
+              # 'down' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "down"}}
+                sequence: !input action_channel_3_down         
+                  
+      # channel 4
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_4_entity}}
+        sequence:
+          - choose:
+              # 'up' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "ip"}}
+                sequence: !input action_channel_4_up
+              # 'stop' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "stop"}}
+                sequence: !input action_channel_4_stop
+              # 'down' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "down"}}
+                sequence: !input action_channel_4_down   
+                  
+      # channel 5
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{trigger.event.data.entity_id == channel_5_entity}}
+        sequence:
+          - choose:
+              # 'up' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "ip"}}
+                sequence: !input action_channel_5_up
+              # 'stop' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "stop"}}
+                sequence: !input action_channel_5_stop
+              # 'down' click
+              - conditions:
+                  - condition: template
+                    value_template: >-
+                      {{trigger.event.data.state == "down"}}
+                sequence: !input action_channel_5_down              
