@@ -4,19 +4,23 @@ blueprint:
   author: https://github.com/kritsel
   description: |
     description: >
-    # RF 16-channel remote control - via RFLink
+    This blueprint adds additional control possibilities to your RF (Radio Frequency) multi-channel remote,
+    when you have integrated that remote into your HomeAssistant via the RFLink integration.
     
-    The RFLink integration creates a single HomeAssistant entity to represent each of the channels of 
-    a multi-channel RF (Radia Frequency) remote control. Plus an additional entity to support the 'All' or 'Group'
-    channel when the remote supports that.
-    This out-of-the-box RFLink behaviour allows you to switch ON or OFF those separate entities via HomeAssistant
-    automations and scripts.
+    
+    Out-of-the-box, the RFLink integration creates a single HomeAssistant entity to represent each of the remote's channels 
+    (plus an additional entity for the group/all channel when your remote supports that).
+    This allows you to switch ON or OFF those entities via HomeAssistant dashboards, automations and scripts.
+    
     
     This blueprint adds more control possibilities. 
-    It allows you to associate independent actions to the ON and OFF button for each channel. 
-    This essentially turns your RF 16-channel remote control - meant to control *sixteen* entities - 
-    into a *thirtytwo* button remote control where the ON and OFF button for each channel can each trigger 
-    a completely independent (set of) action(s). 
+    It allows you to associate independent actions with the ON and OFF button of each channel. 
+    This essentially turns your RF multi-channel remote 
+    - originally meant to control only **sixteen** (sets of) RF receivers like sockets/outlets - 
+    into a **thirty-two** button switch. With the ON and OFF button of each channel able to trigger 
+    a completely independent (set of) action(s). So now you can for example also switch ON or OFF Zigbee or Matter 
+    controlled devices (like Philips Hue or IKEA lamps) via your RF remote.    
+
     
     ## Prerequisites
     
@@ -36,9 +40,10 @@ blueprint:
     Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON.
     
     ## Remote physical layout assumptions
-    The naming used in the blueprint assumes that the assumes has 4 ON and 4 OFF buttons, numbered 1, 2, 3 and 4, 
-    plus a an additional channel switch which can be in position I, II, III or IV.
-    Pressing the ON button labelled with 2 when the channel switch is on III will actually control channel 10.
+    The naming used in the blueprint assumes that the remote has 4 ON and 4 OFF buttons, numbered 1, 2, 3 and 4, 
+    plus a an additional channel selector switch which can be in position I, II, III or IV.
+    Pressing the ON button labelled with 2 when the channel selector switch is on III will actually control channel 10.
+    In this blueprint that channel is named 'Channel III-2'.
     
     ## More Info
     
@@ -49,7 +54,7 @@ blueprint:
     # entities representing the buttons of the RF switch
     channel_I_1_entity:
       name: Channel I-1 entity
-      description: The entity representing channel I-1.
+      description: The entity representing channel I-1 (1).
       default: ''
       selector:
         entity:
@@ -62,7 +67,7 @@ blueprint:
           multiple: false
     channel_I_2_entity:
       name: Channel I-2 entity
-      description: The entity representing channel I-2.
+      description: The entity representing channel I-2 (2).
       default: ''
       selector:
         entity:
@@ -75,7 +80,7 @@ blueprint:
           multiple: false
     channel_I_3_entity:
       name: Channel I-3 entity
-      description: The entity representing channel I-3.
+      description: The entity representing channel I-3 (3).
       default: ''
       selector:
         entity:
@@ -88,7 +93,7 @@ blueprint:
           multiple: false
     channel_I-4_entity:
       name: Channel I-4 entity
-      description: The entity representing channel I-4.
+      description: The entity representing channel I-4 (4).
       default: ''
       selector:
         entity:
@@ -101,7 +106,7 @@ blueprint:
           multiple: false
     channel_II_1_entity:
       name: Channel II-1 entity
-      description: The entity representing channel II-1.
+      description: The entity representing channel II-1 (5).
       default: ''
       selector:
         entity:
@@ -114,7 +119,7 @@ blueprint:
           multiple: false
     channel_II_2_entity:
       name: Channel II-2 entity
-      description: The entity representing channel II-2.
+      description: The entity representing channel II-2 (6).
       default: ''
       selector:
         entity:
@@ -127,7 +132,7 @@ blueprint:
           multiple: false
     channel_II_3_entity:
       name: Channel II-3 entity
-      description: The entity representing channel II-3.
+      description: The entity representing channel II-3 (7).
       default: ''
       selector:
         entity:
@@ -140,7 +145,7 @@ blueprint:
           multiple: false
     channel_II-4_entity:
       name: Channel II-4 entity
-      description: The entity representing channel II-4.
+      description: The entity representing channel II-4 (8).
       default: ''
       selector:
         entity:
@@ -153,7 +158,7 @@ blueprint:
           multiple: false
     channel_III_1_entity:
       name: Channel III-1 entity
-      description: The entity representing channel III-1.
+      description: The entity representing channel III-1 (9).
       default: ''
       selector:
         entity:
@@ -166,7 +171,7 @@ blueprint:
           multiple: false
     channel_III_2_entity:
       name: Channel III-2 entity
-      description: The entity representing channel III-2.
+      description: The entity representing channel III-2 (10).
       default: ''
       selector:
         entity:
@@ -179,7 +184,7 @@ blueprint:
           multiple: false
     channel_III_3_entity:
       name: Channel III-3 entity
-      description: The entity representing channel III-3.
+      description: The entity representing channel III-3 (11).
       default: ''
       selector:
         entity:
@@ -192,7 +197,7 @@ blueprint:
           multiple: false
     channel_III-4_entity:
       name: Channel III-4 entity
-      description: The entity representing channel III-4.
+      description: The entity representing channel III-4 (12).
       default: ''
       selector:
         entity:
@@ -205,7 +210,7 @@ blueprint:
           multiple: false
     channel_IV_1_entity:
       name: Channel IV-1 entity
-      description: The entity representing channel IV-1.
+      description: The entity representing channel IV-1 (13).
       default: ''
       selector:
         entity:
@@ -218,7 +223,7 @@ blueprint:
           multiple: false
     channel_IV_2_entity:
       name: Channel IV-2 entity
-      description: The entity representing channel IV-2.
+      description: The entity representing channel IV-2 (14).
       default: ''
       selector:
         entity:
@@ -231,7 +236,7 @@ blueprint:
           multiple: false
     channel_IV_3_entity:
       name: Channel IV-3 entity
-      description: The entity representing channel IV-3.
+      description: The entity representing channel IV-3 (15).
       default: ''
       selector:
         entity:
@@ -244,7 +249,7 @@ blueprint:
           multiple: false
     channel_IV-4_entity:
       name: Channel IV-4 entity
-      description: The entity representing channel IV-4.
+      description: The entity representing channel IV-4 (16).
       default: ''
       selector:
         entity:

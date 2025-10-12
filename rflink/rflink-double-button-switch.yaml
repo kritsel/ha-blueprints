@@ -5,17 +5,21 @@ blueprint:
   description: >
     # RF double button switch - via RFLink
     
-    The RFLink integration creates a single HomeAssistant entity to represent each of the buttons of 
-    a double RF (Radia Frequency) switch.
-    This out-of-the-box RFLink behaviour allows you to switch ON or OFF those two entities 
-    via HomeAssistant automations and scripts.
+    This blueprint adds additional control possibilities to your RF (Radio Frequency) double button switch,
+    when you have integrated that switch into your HomeAssistant via the RFLink integration.
+    
+    
+    Out-of-the-box, the RFLink integration creates a single HomeAssistant entity to represent each of the buttons of 
+    the switch. This allows you to switch ON or OFF those two entities via HomeAssistant dashboards, automations and scripts.
     
     
     This blueprint adds more control possibilities. 
-    It allows you to associate independent actions to the ON and OFF side of each button. 
-    This essentially turns your RF double button switch - meant to control **two** entities - 
-    into a **four** button switch where the ON and OFF side of each button can each trigger 
-    a completely independent (set of) action(s). 
+    It allows you to associate independent actions with the ON and OFF side of each button. 
+    This essentially turns your RF double button switch 
+    - originally meant to control only **two** (sets of) RF receivers like sockets/outlets - 
+    into a **four** button switch. With the ON and OFF side of each button able to trigger 
+    a completely independent (set of) action(s). So now you can for example also switch ON or OFF Zigbee or Matter 
+    controlled devices (like Philips Hue or IKEA lamps) via your RF switch.
     
     ## Prerequisites
     
@@ -36,10 +40,7 @@ blueprint:
     * COCO/KAKU AWST-9000 battery powered wall switch (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-enkelvoudig-dubbel-wit)
     
     * COCO/KAKU AGST-8802 battery powered wall switch outside (https://klikaanklikuit.nl/product/draadloze-wandschakelaar-voor-buiten-dubbel)
-    
-    * COCO/KAKU AWMT-003 battery powered built-in switch (https://klikaanklikuit.nl/product/inbouwzender-voor-bestaande-wandschakelaars)
-    
-    * COCO/KAKU ACM-3000H2 mains powered built-in switch (https://klikaanklikuit.nl/product/inbouwschakelaar-2-in-1)
+
     
     ## More Info
     
