@@ -234,7 +234,7 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == "ip"}}
+                      {{trigger.event.data.state == "up"}}
                 sequence: !input action_channel_1_up
               # 'stop' click
               - conditions:
@@ -260,7 +260,7 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == "ip"}}
+                      {{trigger.event.data.state == "up"}}
                 sequence: !input action_channel_2_up
               # 'stop' click
               - conditions:
@@ -286,7 +286,7 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == "ip"}}
+                      {{trigger.event.data.state == "up"}}
                 sequence: !input action_channel_3_up
               # 'stop' click
               - conditions:
@@ -312,7 +312,7 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == "ip"}}
+                      {{trigger.event.data.state == "up"}}
                 sequence: !input action_channel_4_up
               # 'stop' click
               - conditions:
@@ -338,7 +338,7 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == "ip"}}
+                      {{trigger.event.data.state == "up"}}
                 sequence: !input action_channel_5_up
               # 'stop' click
               - conditions:

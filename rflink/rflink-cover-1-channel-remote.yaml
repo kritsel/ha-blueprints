@@ -113,7 +113,7 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == "ip"}}
+                      {{trigger.event.data.state == "up"}}
                 sequence: !input action_channel_1_up
               # 'stop' click
               - conditions:
