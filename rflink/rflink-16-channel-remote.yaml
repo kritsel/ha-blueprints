@@ -98,7 +98,7 @@ blueprint:
                 - switch
                 - binary_sensor
           multiple: false
-    channel_I-4_entity:
+    channel_I_4_entity:
       name: Channel I-4 entity
       description: The light/switch/binary_sensor entity representing channel I-4 (4).
       default: ''
@@ -150,7 +150,7 @@ blueprint:
                 - switch
                 - binary_sensor
           multiple: false
-    channel_II-4_entity:
+    channel_II_4_entity:
       name: Channel II-4 entity
       description: The light/switch/binary_sensor entity representing channel II-4 (8).
       default: ''
@@ -202,7 +202,7 @@ blueprint:
                 - switch
                 - binary_sensor
           multiple: false
-    channel_III-4_entity:
+    channel_III_4_entity:
       name: Channel III-4 entity
       description: The light/switch/binary_sensor entity representing channel III-4 (12).
       default: ''
@@ -254,7 +254,7 @@ blueprint:
                 - switch
                 - binary_sensor
           multiple: false
-    channel_IV-4_entity:
+    channel_IV_4_entity:
       name: Channel IV-4 entity
       description: The light/switch/binary_sensor entity representing channel IV-4 (16).
       default: ''
@@ -420,7 +420,7 @@ blueprint:
       default: [ ]
       selector:
         action:
-    action_channel_III-4_off:
+    action_channel_III_4_off:
       name:  Channel III-4 OFF
       description: Action to run on channel III-4 OFF press.
       default: [ ]
@@ -432,7 +432,7 @@ blueprint:
       default: []
       selector:
         action:
-    action_channel_IV-1_off:
+    action_channel_IV_1_off:
       name:  Channel IV-1 OFF
       description: Action to run on channel IV-1 OFF press.
       default: [ ]
@@ -468,7 +468,7 @@ blueprint:
       default: [ ]
       selector:
         action:
-    action_channel_IV-4_off:
+    action_channel_IV_4_off:
       name:  Channel IV-4 OFF
       description: Action to run on channel IV-4 OFF press.
       default: [ ]
