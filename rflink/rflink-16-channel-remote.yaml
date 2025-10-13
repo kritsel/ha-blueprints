@@ -36,11 +36,13 @@ blueprint:
     
     * COCO/KAKU AYCT-102 remote (https://klikaanklikuit.nl/product/afstandsbediening-16-kanalen)
     
+    
     ## 'All' or 'Group' functions
     
     The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated ON and
     OFF button. However, this functionality might not be available on every multi-channel remote control. 
     Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON.
+    
     
     ## Remote physical layout assumptions
     
@@ -48,6 +50,7 @@ blueprint:
     plus a an additional channel selector switch which can be in position I, II, III or IV.
     Pressing the ON button labelled with 2 when the channel selector switch is on III will actually control channel 10.
     In this blueprint that channel is named 'Channel III-2'.
+    
     
     ## More Info
     
