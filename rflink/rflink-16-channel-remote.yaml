@@ -324,7 +324,7 @@ blueprint:
       default: [ ]
       selector:
         action:
-    action_channel_I-4_off:
+    action_channel_I_4_off:
       name:  Channel I-4 OFF
       description: Action to run on channel I-4 OFF press.
       default: [ ]
@@ -336,7 +336,7 @@ blueprint:
       default: []
       selector:
         action:
-    action_channel_II-1_off:
+    action_channel_II_1_off:
       name:  Channel II-1 OFF
       description: Action to run on channel II-1 OFF press.
       default: [ ]
@@ -372,7 +372,7 @@ blueprint:
       default: [ ]
       selector:
         action:
-    action_channel_II-4_off:
+    action_channel_II_4_off:
       name:  Channel II-4 OFF
       description: Action to run on channel II-4 OFF press.
       default: [ ]
@@ -384,7 +384,7 @@ blueprint:
       default: []
       selector:
         action:
-    action_channel_III-1_off:
+    action_channel_III_1_off:
       name:  Channel III-1 OFF
       description: Action to run on channel III-1 OFF press.
       default: [ ]
