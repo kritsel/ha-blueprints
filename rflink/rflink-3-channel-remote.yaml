@@ -43,6 +43,7 @@ blueprint:
     * COCO/KAKU APC3-2300RN remote (https://klikaanklikuit.nl/product/stekkerschakelaarset-3-stekkers-2300-watt-apc3-2300rn)
     
     ## 'All' or 'Group' functions
+    
     The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated ON and
     OFF button. However, this functionality might not be available on every 3-channel remote control. 
     Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON.

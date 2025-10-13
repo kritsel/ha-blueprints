@@ -40,6 +40,7 @@ blueprint:
     * COCO/KAKU AYCT-303 remote with wall mount (https://klikaanklikuit.nl/product/afstandsbediening-met-wandplaat)
     
     ## 'All' or 'Group' functions
+    
     The blueprint assumes that your RF remote control also supports an 'All' or 'Group' channel with an associated on and
     OFF buttON press. However, this functionality might not be available on every multi-channel remote control. 
     Some don't have an All/Group feature at all, or only have an OFF button for the 'All' channel and no ON press.
