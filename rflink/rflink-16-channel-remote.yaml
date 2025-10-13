@@ -847,11 +847,11 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == "allon"}}
+                      {{trigger.event.data.state == allon}}
                 sequence: !input action_channel_all_on
               # 'off' click
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == "alloff"}}
+                      {{trigger.event.data.state == alloff}}
                 sequence: !input action_channel_all_off
