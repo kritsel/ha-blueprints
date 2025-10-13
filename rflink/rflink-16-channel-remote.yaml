@@ -288,7 +288,7 @@ blueprint:
       default: []
       selector:
         action:
-    action_channel_I-1_off:
+    action_channel_I_1_off:
       name:  Channel I-1 OFF
       description: Action to run on channel I-1 OFF press.
       default: [ ]
