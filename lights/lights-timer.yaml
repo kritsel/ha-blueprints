@@ -1,0 +1,112 @@
+blueprint:
+  name: Simple lights timer
+  description: >
+    
+    **Version: 0.1**
+
+
+  domain: automation
+  min_version: 2024.6.0
+  input:
+
+    lights_settings:
+      name: "Lights *"
+      icon: mdi:lightbulb-outline
+      collapsed: true
+      input:
+        target_light:
+          name: Lights
+          description: >
+            The lights that will be activated by the trigger sensor/s.
+    
+            **NOTE** - You can only use entities. Areas, devices and labels are not supported.
+          default: []
+          selector:
+            target:
+              entity:
+                domain:
+                  - light
+                  - switch
+
+    period_1_settings:
+      name: "Lights on period 1"
+      icon: mdi:clock-outline
+      collapsed: true
+      input:
+        start_time_1:
+          name: Start Time 1
+          description: >
+            Set the start time for the first period.
+          default: 00:00:00
+          selector:
+            time:
+        end_time_1:
+          name: End Time 1
+          description: >
+            Set the end time for the first period.
+          default: 00:00:00
+          selector:
+            time:
+    period_2_settings:
+      name: "Lights on period 2"
+      icon: mdi:clock-outline
+      input:
+        start_time_2:
+          name: Start Time 2
+          description: >
+            Set the start time for the second period.
+          default: 00:00:00
+          selector:
+            time:
+        end_time_2:
+          name: End Time 2
+          description: >
+            Set the end time for the second period.
+          default: 00:00:00
+          selector:
+            time:
+
+variables:
+  target_light: !input target_light
+  start_time_1: !input start_time_1
+  end_time_1: !input end_time_1
+  start_time_2: !input start_time_2
+  end_time_2: !input end_time_2
+
+triggers:
+  - trigger: time
+    id: "start_1"
+    at: !input start_time_1
+  - trigger: time
+    id: "end_1"
+    at: !input end_time_1
+  - trigger: time
+    id: "start_1"
+    at: !input start_time_2
+  - trigger: time
+    id: "end_1"
+    at: !input end_time_2
+
+action:
+  - choose:
+      - condition: or
+        conditions:
+          - condition: trigger
+            id: "start_1"
+          - condition: trigger
+            id: "start_2"  
+        sequence:
+          - service: light.turn_on
+            data: {}
+            target: !input target_light
+      - condition: or
+        conditions:
+          - condition: trigger
+            id: "end_1"
+          - condition: trigger
+            id: "end_2"
+        sequence:
+          - service: light.turn_off
+            data: {}
+            target: !input target_light
+mode: single
