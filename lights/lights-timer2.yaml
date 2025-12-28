@@ -171,7 +171,7 @@ triggers:
 # Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['conditions'][0]['sequence']
 # Message malformed: expected a dictionary for dictionary value @ data['actions'][0]['choose'][0]['sequence'][0]['target']
 # Message malformed: expected a dictionary for dictionary value @ data['actions'][0]['choose'][0]['sequence'][0]['target']
-
+# Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['sequence']
 actions:
   - choose:
       conditions:
@@ -181,8 +181,7 @@ actions:
 #          - condition: or
 #            conditions:
               # ON - period 1 - fixed time
-        - condition: and
-          conditions:
+        - and:
           - condition: template
             value_template: "{{ on_1_type == 'time' }}"
           - condition: trigger

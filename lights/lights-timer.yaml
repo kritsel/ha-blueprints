@@ -173,21 +173,17 @@ triggers:
 actions:
   - choose:
       conditions:
-        - condition: or
-          conditions:
+        - or:
           # switch lights ON
-          - condition: or
-            conditions:
+          - or:
               # ON - period 1 - fixed time
-              - condition: and
-                conditions:
+              - and:
                 - condition: template
                   value_template: "{{ on_1_type == 'time' }}"
                 - condition: trigger
                   id: "t_on_1_time"
               # ON - period 1 - sunset
-              - condition: and
-                conditions:
+              - and:
                 - condition: template
                   value_template: "{{ on_1_type == 'sunset' }}"
                 - condition: trigger
