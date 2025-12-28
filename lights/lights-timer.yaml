@@ -74,6 +74,8 @@ blueprint:
                   value: "time"
                 - label: At sunrise
                   value: "sunrise"
+                - label: Ignore lights OFF
+                  value: "disable"
         off_1_time:
           name: Fixed start time 1
           description: >
@@ -122,6 +124,8 @@ blueprint:
                   value: "time"
                 - label: At sunrise
                   value: "sunrise"
+                - label: Ignore lights off
+                  value: "disable"
         off_2_time:
           name: Fixed start time 2
           description: >
