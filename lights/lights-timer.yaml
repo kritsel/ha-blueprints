@@ -204,8 +204,13 @@ action:
           data: {}
           target:
             entity_id: "{{ target_light }}"
+        - service: logbook.log
+          data:
+            name: "Timer Blueprint"
+            message: "Switch ON"
 
-  # switch lights OFF
+
+      # switch lights OFF
     - conditions:
       - or:
         # OFF - period 1 - fixed time
@@ -237,5 +242,9 @@ action:
           data: { }
           target:
             entity_id: "{{ target_light }}"
+        - service: logbook.log
+          data:
+            name: "Timer Blueprint"
+            message: "Switch OFF"
 
 mode: single
