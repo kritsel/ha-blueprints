@@ -77,7 +77,7 @@ blueprint:
                 - label: Ignore lights OFF
                   value: "disable"
         off_1_time:
-          name: Fixed start time 1
+          name: Fixed end time 1
           description: >
             Set the fixed start time for the first time period.
           default: 00:00:00
@@ -102,7 +102,7 @@ blueprint:
                 - label: Ignore lights on
                   value: "disable"
         on_2_time:
-          name: Fixed start time 1
+          name: Fixed start time 2
           description: >
             Set the fixed end time for the second time period.
           default: 00:00:00
@@ -127,7 +127,7 @@ blueprint:
                 - label: Ignore lights off
                   value: "disable"
         off_2_time:
-          name: Fixed start time 2
+          name: Fixed end time 2
           description: >
             Set the fixed end time for the second time period.
           default: 00:00:00
