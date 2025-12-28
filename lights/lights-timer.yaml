@@ -85,9 +85,6 @@ triggers:
     id: "t_sunset"
     event: sunset
 
-Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['condition']
-
-
 action:
   - choose:
       conditions:
