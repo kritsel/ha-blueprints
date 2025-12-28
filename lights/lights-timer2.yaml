@@ -173,79 +173,23 @@ triggers:
 actions:
   - choose:
       conditions:
-        - condition: or
-          conditions:
+#        - condition: or
+#          conditions:
           # switch lights ON
-          - condition: or
-            conditions:
+#          - condition: or
+#            conditions:
               # ON - period 1 - fixed time
-              - condition: and
-                conditions:
-                - condition: template
-                  value_template: "{{ on_1_type == 'time' }}"
-                - condition: trigger
-                  id: "t_on_1_time"
-              # ON - period 1 - sunset
-              - condition: and
-                conditions:
-                - condition: template
-                  value_template: "{{ on_1_type == 'sunset' }}"
-                - condition: trigger
-                  id: "t_sunset"
+        - condition: and
+          conditions:
+          - condition: template
+            value_template: "{{ on_1_type == 'time' }}"
+          - condition: trigger
+            id: "t_on_1_time"
+      sequence:
+        - service: light.turn_on
+          data: {}
+          target: !input target_light
 
-              # ON - period 2 - fixed time
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ on_2_type == 'time' }}"
-                  - condition: trigger
-                    id: "t_on_2_time"
-              # ON - period 2 - sunset
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ on_2_type == 'sunset' }}"
-                  - condition: trigger
-                    id: "t_sunset"
-            sequence:
-              - service: light.turn_on
-                data: {}
-                target: !input target_light
 
-          # switch lights OFF
-          - condition: or
-            conditions:
-              # OFF - period 1 - fixed time
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ off_1_type == 'time' }}"
-                  - condition: trigger
-                    id: "t_off_1_time"
-              # OFF - period 1 - sunrise
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ off_1_type == 'sunrise' }}"
-                  - condition: trigger
-                    id: "t_sunrise"
-              # OFF - period 2 - fixed time
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ off_2_type == 'time' }}"
-                  - condition: trigger
-                    id: "t_off_2_time"
-              # OFF - period 2 - sunrise
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ off_2_type == 'sunrise' }}"
-                  - condition: trigger
-                    id: "t_sunrise"
-            sequence:
-              - service: light.turn_off
-                data: { }
-                target: !input target_light      
 
 mode: single
