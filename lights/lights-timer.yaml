@@ -138,16 +138,12 @@ variables:
   target_light: !input target_light
   on_1_type: !input on_1_type
   on_1_time: !input on_1_time
-  on_1_sun: !input on_1_sun
   off_1_type: !input off_1_type
   off_1_time: !input off_1_time
-  off_1_sun: !input off_1_sun
   on_2_type: !input on_2_type
   on_2_time: !input on_2_time
-  on_2_sun: !input on_2_sun
   off_2_type: !input off_2_type
   off_2_time: !input off_2_time
-  off_2_sun: !input off_2_sun 
 
 triggers:
   - trigger: time
@@ -184,24 +180,13 @@ action:
                   value_template: "{{ on_1_type == 'time' }}"
                 - condition: trigger
                   id: "t_on_1_time"
-              # ON - period 1 - sun position - sunrise
+              # ON - period 1 - sunset
               - condition: and
                 conditions:
                 - condition: template
-                  value_template: "{{ on_1_type == 'sun' }}"
-                - condition: template
-                  value_template: "{{ on_1_sun == 'sunrise' }}"
+                  value_template: "{{ on_1_type == 'sunset' }}"
                 - condition: trigger
-                  id: "t_sunrise"
-              # ON - period 1 - sun position - sunset
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ on_1_type == 'sun' }}"
-                  - condition: template
-                    value_template: "{{ on_1_sun == 'sunset' }}"
-                  - condition: trigger
-                    id: "t_sunset"
+                  id: "t_sunset"
 
               # ON - period 2 - fixed time
               - condition: and
@@ -210,24 +195,13 @@ action:
                     value_template: "{{ on_2_type == 'time' }}"
                   - condition: trigger
                     id: "t_on_2_time"
-              # ON - period 2 - sun position - sunrise
+              # ON - period 2 - sunset
               - condition: and
                 conditions:
                   - condition: template
-                    value_template: "{{ on_2_type == 'sun' }}"
-                  - condition: template
-                    value_template: "{{ on_2_sun == 'sunrise' }}"
+                    value_template: "{{ on_2_type == 'sunset' }}"
                   - condition: trigger
-                    id: "t_sunrise"
-              # ON - period 2 - sun position - sunset
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ on_2_type == 'sun' }}"
-                  - condition: template
-                    value_template: "{{ on_2_sun == 'sunset' }}"
-                  - condition: trigger
-                    id: "t_sunset"                
+                    id: "t_sunset"
             sequence:
               - service: light.turn_on
                 data: {}
@@ -243,24 +217,13 @@ action:
                     value_template: "{{ off_1_type == 'time' }}"
                   - condition: trigger
                     id: "t_off_1_time"
-              # OFF - period 1 - sun position - sunrise
+              # OFF - period 1 - sunrise
               - condition: and
                 conditions:
                   - condition: template
-                    value_template: "{{ off_1_type == 'sun' }}"
-                  - condition: template
-                    value_template: "{{ off_1_sun == 'sunrise' }}"
+                    value_template: "{{ off_1_type == 'sunrise' }}"
                   - condition: trigger
                     id: "t_sunrise"
-              # OFF - period 1 - sun position - sunset
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ off_1_type == 'sun' }}"
-                  - condition: template
-                    value_template: "{{ off_1_sun == 'sunset' }}"
-                  - condition: trigger
-                    id: "t_sunset"
               # OFF - period 2 - fixed time
               - condition: and
                 conditions:
@@ -268,24 +231,13 @@ action:
                     value_template: "{{ off_2_type == 'time' }}"
                   - condition: trigger
                     id: "t_off_2_time"
-              # OFF - period 2 - sun position - sunrise
+              # OFF - period 2 - sunrise
               - condition: and
                 conditions:
                   - condition: template
-                    value_template: "{{ off_2_type == 'sun' }}"
-                  - condition: template
-                    value_template: "{{ off_2_sun == 'sunrise' }}"
+                    value_template: "{{ off_2_type == 'sunrise' }}"
                   - condition: trigger
                     id: "t_sunrise"
-              # OFF - period 2 - sun position - sunset
-              - condition: and
-                conditions:
-                  - condition: template
-                    value_template: "{{ off_2_type == 'sun' }}"
-                  - condition: template
-                    value_template: "{{ off_2_sun == 'sunset' }}"
-                  - condition: trigger
-                    id: "t_sunset"
             sequence:
               - service: light.turn_off
                 data: { }
