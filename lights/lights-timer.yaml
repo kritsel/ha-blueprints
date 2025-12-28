@@ -30,91 +30,90 @@ blueprint:
                   - light
                   - switch
 
+
     period_1_settings:
       name: "Lights on period 1"
       icon: mdi:clock-outline
       collapsed: true
       input:
-        start_time_1a:
-          name: Start Time 1a
+        start_1_type:
+          default: disable
+          selector:
+            select:
+              options:
+              - label: Use fixed time
+                value: "time"
+              - label: Use sun position
+                value: "sun"
+              - label: Disable start
+                value: "disable"
+        start_1_time:
+          name: Fixed start time 1
           description: >
-            Set the start time for the first period.
+            Set the fixed start time for the first period.
           default: 00:00:00
           selector:
             time:
-        start_time_1b:
-          name: Start Time 1b
+        start_1_sun:
+          name: Sun position start time 1
           description: >
-            Set the start time for the first period.
+            Set the sun position for the start of the first period.
+          default: start_1_sun_sunset
           selector:
-            sun:
-        end_time_1:
-          name: End Time 1
-          description: >
-            Set the end time for the first period.
-          default: 00:00:00
-          selector:
-            time:
-    period_2_settings:
-      name: "Lights on period 2"
-      icon: mdi:clock-outline
-      input:
-        start_time_2:
-          name: Start Time 2
-          description: >
-            Set the start time for the second period.
-          default: 00:00:00
-          selector:
-            time:
-        end_time_2:
-          name: End Time 2
-          description: >
-            Set the end time for the second period.
-          default: 00:00:00
-          selector:
-            time:
+            select:
+              options:
+                - label: Sunrise
+                  value: "sunrise"
+                - label: Sunset
+                  value: "sunset"
+
 
 variables:
   target_light: !input target_light
-  start_time_1: !input start_time_1
-  end_time_1: !input end_time_1
-  start_time_2: !input start_time_2
-  end_time_2: !input end_time_2
+  start_1_type: !input start_1_type
+  start_1_time: !input start_1_time
+  start_1_sun: !input start_1_sun
 
 triggers:
   - trigger: time
-    id: "start_1"
-    at: !input start_time_1
-  - trigger: time
-    id: "end_1"
-    at: !input end_time_1
-  - trigger: time
-    id: "start_1"
-    at: !input start_time_2
-  - trigger: time
-    id: "end_1"
-    at: !input end_time_2
+    id: "t_start_1_time"
+    at: !input start_1_time
+  - trigger: sun
+    id: "t_sunrise"
+    event: sunrise
+  - trigger: sun
+    id: "t_sunset"
+    event: sunset
 
 action:
   - choose:
       - condition: or
         conditions:
-          - condition: trigger
-            id: "start_1"
-          - condition: trigger
-            id: "start_2"  
+          - condition: and
+            conditions:
+            - condition: template
+              value_template: "{{ start_1_type == 'time' }}"
+            - condition: trigger
+              id: "t_start_1_time"
+          - condition: and
+            conditions:
+            - condition: template
+              value_template: "{{ start_1_type == 'sun' }}"
+            - condition: template
+              value_template: "{{ start_1_sun == 'sunrise' }}"
+            - condition: trigger
+              id: "t_sunrise"
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: "{{ start_1_type == 'sun' }}"
+              - condition: template
+                value_template: "{{ start_1_sun == 'sunset' }}"
+              - condition: trigger
+                id: "t_sunset"
         sequence:
           - service: light.turn_on
             data: {}
             target: !input target_light
-      - condition: or
-        conditions:
-          - condition: trigger
-            id: "end_1"
-          - condition: trigger
-            id: "end_2"
-        sequence:
-          - service: light.turn_off
-            data: {}
-            target: !input target_light
+
 mode: single
