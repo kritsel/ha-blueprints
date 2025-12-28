@@ -173,9 +173,11 @@ triggers:
 # Message malformed: expected a dictionary for dictionary value @ data['actions'][0]['choose'][0]['sequence'][0]['target']
 # Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['sequence']
 # Message malformed: required key not provided @ data['actions'][0]['choose'][0]['sequence']
+# Message malformed: required key not provided @ data['actions'][0]['choose'][0]['sequence']
+
 actions:
   - choose:
-      conditions:
+      - conditions:
 #        - condition: or
 #          conditions:
           # switch lights ON
@@ -187,10 +189,10 @@ actions:
             value_template: "{{ on_1_type == 'time' }}"
           - condition: trigger
             id: "t_on_1_time"
-      sequence:
-        - service: switch.turn_on
-          data: {}
-          target:
-            entity_id: "{{ target_light }}"
+        sequence:
+          - service: light.turn_on
+            data: {}
+            target:
+              entity_id: "{{ target_light }}"
 
 mode: single
