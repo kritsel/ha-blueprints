@@ -169,7 +169,7 @@ triggers:
 
 # Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['conditions'][0]['sequence']
 # Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['conditions'][0]['sequence']
-
+# Message malformed: expected a dictionary for dictionary value @ data['actions'][0]['choose'][0]['sequence'][0]['target']
 actions:
   - choose:
       conditions:
@@ -185,10 +185,10 @@ actions:
             value_template: "{{ on_1_type == 'time' }}"
           - condition: trigger
             id: "t_on_1_time"
-      sequence:
-        - service: light.turn_on
-          data: {}
-          target: !input target_light
+          sequence:
+            - service: light.turn_on
+              data: {}
+              target: !input target_light
 
 
 
