@@ -35,13 +35,19 @@ blueprint:
       icon: mdi:clock-outline
       collapsed: true
       input:
-        start_time_1:
-          name: Start Time 1
+        start_time_1a:
+          name: Start Time 1a
           description: >
             Set the start time for the first period.
           default: 00:00:00
           selector:
             time:
+        start_time_1b:
+          name: Start Time 1b
+          description: >
+            Set the start time for the first period.
+          selector:
+            sun:
         end_time_1:
           name: End Time 1
           description: >
