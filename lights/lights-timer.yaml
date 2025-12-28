@@ -6,7 +6,9 @@ blueprint:
 
 
   domain: automation
-  min_version: 2024.6.0
+  author: https://github.com/kritsel
+  homeassistant:
+    min_version: "2024.6.0"
   input:
 
     lights_settings:
