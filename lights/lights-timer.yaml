@@ -30,13 +30,13 @@ blueprint:
                   - light
                   - switch
 
-
-    period_1_settings:
-      name: "Lights on period 1"
+    period_1_turn_on_settings:
+      name: "Turn lights ON - period 1"
       icon: mdi:clock-outline
-      collapsed: true
+      collapsed: false
       input:
-        start_1_type:
+        on_1_type:
+          name: Choose how you want to define the time to turn the lights on
           default: disable
           selector:
             select:
@@ -45,20 +45,131 @@ blueprint:
                 value: "time"
               - label: Use sun position
                 value: "sun"
-              - label: Disable start
+              - label: Don't turn lights on
                 value: "disable"
-        start_1_time:
+        on_1_time:
           name: Fixed start time 1
           description: >
             Set the fixed start time for the first period.
           default: 00:00:00
           selector:
             time:
-        start_1_sun:
+        on_1_sun:
           name: Sun position start time 1
           description: >
             Set the sun position for the start of the first period.
-          default: start_1_sun_sunset
+          default: on_1_sun_sunset
+          selector:
+            select:
+              options:
+                - label: Sunrise
+                  value: "sunrise"
+                - label: Sunset
+                  value: "sunset"
+                  
+    period_1_turn_off_settings:
+      name: "Turn lights OFF - period 1"
+      icon: mdi:clock-outline
+      collapsed: false
+      input:
+        off_1_type:
+          name: Choose how you want to define the time to turn the lights on
+          default: disable
+          selector:
+            select:
+              options:
+                - label: Use fixed time
+                  value: "time"
+                - label: Use sun position
+                  value: "sun"
+                - label: Don't turn lights on
+                  value: "disable"
+        off_1_time:
+          name: Fixed start time 1
+          description: >
+            Set the fixed start time for the first period.
+          default: 00:00:00
+          selector:
+            time:
+        off_1_sun:
+          name: Sun position start time 1
+          description: >
+            Set the sun position for the start of the first period.
+          default: off_1_sun_sunset
+          selector:
+            select:
+              options:
+                - label: Sunrise
+                  value: "sunrise"
+                - label: Sunset
+                  value: "sunset"                  
+
+    period_2_turn_on_settings:
+      name: "Turn lights ON - period 2"
+      icon: mdi:clock-outline
+      collapsed: true
+      input:
+        on_2_type:
+          name: Choose how you want to define the time to turn the lights on
+          default: disable
+          selector:
+            select:
+              options:
+                - label: Use fixed time
+                  value: "time"
+                - label: Use sun position
+                  value: "sun"
+                - label: Don't turn lights on
+                  value: "disable"
+        on_2_time:
+          name: Fixed start time 1
+          description: >
+            Set the fixed start time for the first period.
+          default: 00:00:00
+          selector:
+            time:
+        on_2_sun:
+          name: Sun position start time 1
+          description: >
+            Set the sun position for the start of the first period.
+          default: on_2_sun_sunset
+          selector:
+            select:
+              options:
+                - label: Sunrise
+                  value: "sunrise"
+                - label: Sunset
+                  value: "sunset"
+    
+    period_2_turn_off_settings:
+      name: "Turn lights OFF - period 1"
+      icon: mdi:clock-outline
+      collapsed: true
+      input:
+        off_2_type:
+          name: Choose how you want to define the time to turn the lights on
+          default: disable
+          selector:
+            select:
+              options:
+                - label: Use fixed time
+                  value: "time"
+                - label: Use sun position
+                  value: "sun"
+                - label: Don't turn lights on
+                  value: "disable"
+        off_2_time:
+          name: Fixed start time 1
+          description: >
+            Set the fixed start time for the first period.
+          default: 00:00:00
+          selector:
+            time:
+        off_2_sun:
+          name: Sun position start time 1
+          description: >
+            Set the sun position for the start of the first period.
+          default: off_2_sun_sunset
           selector:
             select:
               options:
@@ -67,17 +178,34 @@ blueprint:
                 - label: Sunset
                   value: "sunset"
 
-
 variables:
   target_light: !input target_light
-  start_1_type: !input start_1_type
-  start_1_time: !input start_1_time
-  start_1_sun: !input start_1_sun
+  on_1_type: !input on_1_type
+  on_1_time: !input on_1_time
+  on_1_sun: !input on_1_sun
+  off_1_type: !input off_1_type
+  off_1_time: !input off_1_time
+  off_1_sun: !input off_1_sun
+  on_2_type: !input on_2_type
+  on_2_time: !input on_2_time
+  on_2_sun: !input on_2_sun
+  off_2_type: !input off_2_type
+  off_2_time: !input off_2_time
+  off_2_sun: !input off_2_sun 
 
 triggers:
   - trigger: time
-    id: "t_start_1_time"
-    at: !input start_1_time
+    id: "t_on_1_time"
+    at: !input on_1_time
+  - trigger: time
+    id: "t_off_1_time"
+    at: !input off_1_time    
+  - trigger: time
+    id: "t_on_2_time"
+    at: !input on_2_time
+  - trigger: time
+    id: "t_off_2_time"
+    at: !input off_2_time
   - trigger: sun
     id: "t_sunrise"
     event: sunrise
@@ -88,33 +216,123 @@ triggers:
 action:
   - choose:
       conditions:
-      - condition: or
-        conditions:
-          - condition: and
+        - condition: or
+          conditions:
+          # switch lights ON
+          - condition: or
             conditions:
-            - condition: template
-              value_template: "{{ start_1_type == 'time' }}"
-            - condition: trigger
-              id: "t_start_1_time"
-          - condition: and
+              # ON - period 1 - fixed time
+              - condition: and
+                conditions:
+                - condition: template
+                  value_template: "{{ on_1_type == 'time' }}"
+                - condition: trigger
+                  id: "t_on_1_time"
+              # ON - period 1 - sun position - sunrise
+              - condition: and
+                conditions:
+                - condition: template
+                  value_template: "{{ on_1_type == 'sun' }}"
+                - condition: template
+                  value_template: "{{ on_1_sun == 'sunrise' }}"
+                - condition: trigger
+                  id: "t_sunrise"
+              # ON - period 1 - sun position - sunset
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ on_1_type == 'sun' }}"
+                  - condition: template
+                    value_template: "{{ on_1_sun == 'sunset' }}"
+                  - condition: trigger
+                    id: "t_sunset"
+
+              # ON - period 2 - fixed time
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ on_2_type == 'time' }}"
+                  - condition: trigger
+                    id: "t_on_2_time"
+              # ON - period 2 - sun position - sunrise
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ on_2_type == 'sun' }}"
+                  - condition: template
+                    value_template: "{{ on_2_sun == 'sunrise' }}"
+                  - condition: trigger
+                    id: "t_sunrise"
+              # ON - period 2 - sun position - sunset
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ on_2_type == 'sun' }}"
+                  - condition: template
+                    value_template: "{{ on_2_sun == 'sunset' }}"
+                  - condition: trigger
+                    id: "t_sunset"                
+            sequence:
+              - service: light.turn_on
+                data: {}
+                target: !input target_light
+
+          # switch lights OFF
+          - condition: or
             conditions:
-            - condition: template
-              value_template: "{{ start_1_type == 'sun' }}"
-            - condition: template
-              value_template: "{{ start_1_sun == 'sunrise' }}"
-            - condition: trigger
-              id: "t_sunrise"
-          - condition: and
-            conditions:
-              - condition: template
-                value_template: "{{ start_1_type == 'sun' }}"
-              - condition: template
-                value_template: "{{ start_1_sun == 'sunset' }}"
-              - condition: trigger
-                id: "t_sunset"
-        sequence:
-          - service: light.turn_on
-            data: {}
-            target: !input target_light
+              # OFF - period 1 - fixed time
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ off_1_type == 'time' }}"
+                  - condition: trigger
+                    id: "t_off_1_time"
+              # OFF - period 1 - sun position - sunrise
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ off_1_type == 'sun' }}"
+                  - condition: template
+                    value_template: "{{ off_1_sun == 'sunrise' }}"
+                  - condition: trigger
+                    id: "t_sunrise"
+              # OFF - period 1 - sun position - sunset
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ off_1_type == 'sun' }}"
+                  - condition: template
+                    value_template: "{{ off_1_sun == 'sunset' }}"
+                  - condition: trigger
+                    id: "t_sunset"
+              # OFF - period 2 - fixed time
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ off_2_type == 'time' }}"
+                  - condition: trigger
+                    id: "t_off_2_time"
+              # OFF - period 2 - sun position - sunrise
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ off_2_type == 'sun' }}"
+                  - condition: template
+                    value_template: "{{ off_2_sun == 'sunrise' }}"
+                  - condition: trigger
+                    id: "t_sunrise"
+              # OFF - period 2 - sun position - sunset
+              - condition: and
+                conditions:
+                  - condition: template
+                    value_template: "{{ off_2_type == 'sun' }}"
+                  - condition: template
+                    value_template: "{{ off_2_sun == 'sunset' }}"
+                  - condition: trigger
+                    id: "t_sunset"
+            sequence:
+              - service: light.turn_off
+                data: { }
+                target: !input target_light      
 
 mode: single
