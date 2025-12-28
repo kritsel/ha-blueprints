@@ -25,9 +25,7 @@ blueprint:
         target_light:
           name: Lights
           description: >
-            The lights that will be activated by the trigger sensor/s.
-    
-            **NOTE** - You can only use entities. Areas, devices and labels are not supported.
+            The lights that will be activated during the defined time periods.
           default: []
           selector:
             target:
@@ -42,36 +40,25 @@ blueprint:
       collapsed: false
       input:
         on_1_type:
-          name: Choose how you want to define when to turn the lights on
+          name: Choose when the lights should be turned ON
           default: disable
           selector:
             select:
               options:
-              - label: Use fixed time
+              - label: At a fixed time
+                description: Specify the time below
                 value: "time"
-              - label: Use sun position
-                value: "sun"
-              - label: Don't turn lights on
+              - label: At sunset
+                value: "sunset"
+              - label: Ignore lights on
                 value: "disable"
         on_1_time:
           name: Fixed start time 1
           description: >
-            Set the fixed start time for the first period.
+            Set the fixed start time for the first time period.
           default: 00:00:00
           selector:
             time:
-        on_1_sun:
-          name: Sun position start time 1
-          description: >
-            Set the sun position for the start of the first period.
-          default: on_1_sun_sunset
-          selector:
-            select:
-              options:
-                - label: Sunrise
-                  value: "sunrise"
-                - label: Sunset
-                  value: "sunset"
                   
     period_1_turn_off_settings:
       name: "Period 1 - turn lights OFF"
@@ -79,36 +66,23 @@ blueprint:
       collapsed: false
       input:
         off_1_type:
-          name: Choose how you want to define when to turn the lights off
+          name: Choose when the lights should be turned OFF
           default: disable
           selector:
             select:
               options:
-                - label: Use fixed time
+                - label: At a fixed time
+                  description: Specify the time below
                   value: "time"
-                - label: Use sun position
-                  value: "sun"
-                - label: Don't turn lights off
-                  value: "disable"
+                - label: At sunrise
+                  value: "sunrise"
         off_1_time:
           name: Fixed start time 1
           description: >
-            Set the fixed start time for the first period.
+            Set the fixed start time for the first time period.
           default: 00:00:00
           selector:
             time:
-        off_1_sun:
-          name: Sun position start time 1
-          description: >
-            Set the sun position for the start of the first period.
-          default: off_1_sun_sunset
-          selector:
-            select:
-              options:
-                - label: Sunrise
-                  value: "sunrise"
-                - label: Sunset
-                  value: "sunset"                  
 
     period_2_turn_on_settings:
       name: "Period 2 - turn lights ON"
@@ -116,36 +90,25 @@ blueprint:
       collapsed: true
       input:
         on_2_type:
-          name: Choose how you want to define when time to turn the lights on
+          name: Choose when the lights should be turned ON
           default: disable
           selector:
             select:
               options:
-                - label: Use fixed time
+                - label: At a fixed time
+                  description: Specify the time below
                   value: "time"
-                - label: Use sun position
-                  value: "sun"
-                - label: Don't turn lights on
+                - label: At sunset
+                  value: "sunset"
+                - label: Ignore lights on
                   value: "disable"
         on_2_time:
           name: Fixed start time 1
           description: >
-            Set the fixed start time for the first period.
+            Set the fixed end time for the second time period.
           default: 00:00:00
           selector:
             time:
-        on_2_sun:
-          name: Sun position start time 1
-          description: >
-            Set the sun position for the start of the first period.
-          default: on_2_sun_sunset
-          selector:
-            select:
-              options:
-                - label: Sunrise
-                  value: "sunrise"
-                - label: Sunset
-                  value: "sunset"
     
     period_2_turn_off_settings:
       name: "Period 2 - turn lights OFF"
@@ -153,36 +116,23 @@ blueprint:
       collapsed: true
       input:
         off_2_type:
-          name: Choose how you want to define when to turn the lights off
+          name: Choose when the lights should be turned OFF
           default: disable
           selector:
             select:
               options:
-                - label: Use fixed time
+                - label: At a fixed time
+                  description: Specify the time below
                   value: "time"
-                - label: Use sun position
-                  value: "sun"
-                - label: Don't turn lights off
-                  value: "disable"
+                - label: At sunrise
+                  value: "sunrise"
         off_2_time:
-          name: Fixed start time 1
+          name: Fixed start time 2
           description: >
-            Set the fixed start time for the first period.
+            Set the fixed end time for the second time period.
           default: 00:00:00
           selector:
             time:
-        off_2_sun:
-          name: Sun position start time 1
-          description: >
-            Set the sun position for the start of the first period.
-          default: off_2_sun_sunset
-          selector:
-            select:
-              options:
-                - label: Sunrise
-                  value: "sunrise"
-                - label: Sunset
-                  value: "sunset"
 
 variables:
   target_light: !input target_light
