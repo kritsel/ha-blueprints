@@ -170,7 +170,7 @@ triggers:
 # Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['conditions'][0]['sequence']
 # Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['conditions'][0]['sequence']
 
-actions:
+action:
   # switch lights ON
   - choose:
     - conditions:
@@ -187,21 +187,18 @@ actions:
             value_template: "{{ on_1_type == 'sunset' }}"
           - condition: trigger
             id: "t_sunset"
-
         # ON - period 2 - fixed time
-        - condition: and
-          conditions:
-            - condition: template
-              value_template: "{{ on_2_type == 'time' }}"
-            - condition: trigger
-              id: "t_on_2_time"
+        - and:
+          - condition: template
+            value_template: "{{ on_2_type == 'time' }}"
+          - condition: trigger
+            id: "t_on_2_time"
         # ON - period 2 - sunset
-        - condition: and
-          conditions:
-            - condition: template
-              value_template: "{{ on_2_type == 'sunset' }}"
-            - condition: trigger
-              id: "t_sunset"
+        - and:
+          - condition: template
+            value_template: "{{ on_2_type == 'sunset' }}"
+          - condition: trigger
+            id: "t_sunset"
       sequence:
         - service: light.turn_on
           data: {}
@@ -209,7 +206,6 @@ actions:
             entity_id: "{{ target_light }}"
 
   # switch lights OFF
-  - choose:
     - conditions:
       - or:
         # OFF - period 1 - fixed time
