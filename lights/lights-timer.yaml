@@ -2,8 +2,14 @@ blueprint:
   name: Simple lights timer
   description: >
     
-    **Version: 0.1**
-
+    This blueprint allows you to turn on and off one or more lights (or switches) based on either fixed time
+    or sunset or sunrise. 
+    
+    You can define a schedule with 1 or 2 periods during which the lights (or switches) will be switched on.
+    This allows you to e.g. either switch lights on in the evening, leave them on during the night and turn off in the morning (1 period) 
+    or have lights on during a couple of hours in the evening (but off during the night) and on again for some hours in the morning (2 periods).
+    
+    **Version: 0.2**
 
   domain: automation
   author: https://github.com/kritsel
@@ -31,12 +37,12 @@ blueprint:
                   - switch
 
     period_1_turn_on_settings:
-      name: "Turn lights ON - period 1"
+      name: "Period 1 - turn lights ON"
       icon: mdi:clock-outline
       collapsed: false
       input:
         on_1_type:
-          name: Choose how you want to define the time to turn the lights on
+          name: Choose how you want to define when to turn the lights on
           default: disable
           selector:
             select:
@@ -68,12 +74,12 @@ blueprint:
                   value: "sunset"
                   
     period_1_turn_off_settings:
-      name: "Turn lights OFF - period 1"
+      name: "Period 1 - turn lights OFF"
       icon: mdi:clock-outline
       collapsed: false
       input:
         off_1_type:
-          name: Choose how you want to define the time to turn the lights on
+          name: Choose how you want to define when to turn the lights off
           default: disable
           selector:
             select:
@@ -82,7 +88,7 @@ blueprint:
                   value: "time"
                 - label: Use sun position
                   value: "sun"
-                - label: Don't turn lights on
+                - label: Don't turn lights off
                   value: "disable"
         off_1_time:
           name: Fixed start time 1
@@ -105,12 +111,12 @@ blueprint:
                   value: "sunset"                  
 
     period_2_turn_on_settings:
-      name: "Turn lights ON - period 2"
+      name: "Period 2 - turn lights ON"
       icon: mdi:clock-outline
       collapsed: true
       input:
         on_2_type:
-          name: Choose how you want to define the time to turn the lights on
+          name: Choose how you want to define when time to turn the lights on
           default: disable
           selector:
             select:
@@ -142,12 +148,12 @@ blueprint:
                   value: "sunset"
     
     period_2_turn_off_settings:
-      name: "Turn lights OFF - period 1"
+      name: "Period 2 - turn lights OFF"
       icon: mdi:clock-outline
       collapsed: true
       input:
         off_2_type:
-          name: Choose how you want to define the time to turn the lights on
+          name: Choose how you want to define when to turn the lights off
           default: disable
           selector:
             select:
@@ -156,7 +162,7 @@ blueprint:
                   value: "time"
                 - label: Use sun position
                   value: "sun"
-                - label: Don't turn lights on
+                - label: Don't turn lights off
                   value: "disable"
         off_2_time:
           name: Fixed start time 1
