@@ -45,8 +45,7 @@ blueprint:
           selector:
             select:
               options:
-              - label: At a fixed time
-                description: Specify the time below
+              - label: At a fixed time (specify the time below)
                 value: "time"
               - label: At sunset
                 value: "sunset"
@@ -71,8 +70,7 @@ blueprint:
           selector:
             select:
               options:
-                - label: At a fixed time
-                  description: Specify the time below
+                - label: At a fixed time (specify the time below)
                   value: "time"
                 - label: At sunrise
                   value: "sunrise"
@@ -95,8 +93,7 @@ blueprint:
           selector:
             select:
               options:
-                - label: At a fixed time
-                  description: Specify the time below
+                - label: At a fixed time (specify the time below)
                   value: "time"
                 - label: At sunset
                   value: "sunset"
@@ -121,8 +118,7 @@ blueprint:
           selector:
             select:
               options:
-                - label: At a fixed time
-                  description: Specify the time below
+                - label: At a fixed time (specify the time below)
                   value: "time"
                 - label: At sunrise
                   value: "sunrise"
