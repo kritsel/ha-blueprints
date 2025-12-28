@@ -2,12 +2,14 @@ blueprint:
   name: Simple lights timer
   description: >
     
-    This blueprint allows you to turn on and off one or more lights (or switches) based on either fixed time
+    This blueprint allows you to turn on and off one or more lights (or switches) based on either fixed times,
     or sunset or sunrise. 
     
-    You can define a schedule with 1 or 2 periods during which the lights (or switches) will be switched on.
+    
+    You can define a schedule with 1 or 2 time periods during which the lights (or switches) will be switched on.
     This allows you to e.g. either switch lights on in the evening, leave them on during the night and turn off in the morning (1 period) 
     or have lights on during a couple of hours in the evening (but off during the night) and on again for some hours in the morning (2 periods).
+    
     
     **Version: 0.2**
 
@@ -18,14 +20,14 @@ blueprint:
   input:
 
     lights_settings:
-      name: "Lights *"
+      name: "Lights"
       icon: mdi:lightbulb-outline
       collapsed: true
       input:
         target_light:
           name: Lights
           description: >
-            The lights that will be activated during the defined time periods.
+            The lights (or switches) that will be switched on during the defined time periods.
           default: []
           selector:
             target:
@@ -52,9 +54,9 @@ blueprint:
               - label: Ignore lights on
                 value: "disable"
         on_1_time:
-          name: Fixed start time 1
+          name: Fixed lights ON time
           description: >
-            Set the fixed start time for the first time period.
+            Set the fixed lights ON time for the first time period.
           default: 00:00:00
           selector:
             time:
@@ -77,9 +79,9 @@ blueprint:
                 - label: Ignore lights OFF
                   value: "disable"
         off_1_time:
-          name: Fixed end time 1
+          name: Fixed lights OFF time
           description: >
-            Set the fixed start time for the first time period.
+            Set the fixed lights OFF time for the first time period.
           default: 00:00:00
           selector:
             time:
@@ -102,9 +104,9 @@ blueprint:
                 - label: Ignore lights on
                   value: "disable"
         on_2_time:
-          name: Fixed start time 2
+          name: Fixed lights ON time
           description: >
-            Set the fixed end time for the second time period.
+            Set the fixed lights ON time for the second time period.
           default: 00:00:00
           selector:
             time:
@@ -127,9 +129,9 @@ blueprint:
                 - label: Ignore lights off
                   value: "disable"
         off_2_time:
-          name: Fixed end time 2
+          name: Fixed lights OFF time
           description: >
-            Set the fixed end time for the second time period.
+            Set the fixed lights OFF time for the second time period.
           default: 00:00:00
           selector:
             time:
