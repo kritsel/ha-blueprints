@@ -167,9 +167,6 @@ triggers:
     id: "t_sunset"
     event: sunset
 
-# Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['conditions'][0]['sequence']
-# Message malformed: extra keys not allowed @ data['actions'][0]['choose'][0]['conditions'][0]['conditions'][0]['sequence']
-
 action:
   # switch lights ON
   - choose:
@@ -206,8 +203,8 @@ action:
       sequence:
         - service: light.turn_on
           data: {}
-          target:
-            entity_id: !input target_light
+          target: !input target_light
+            # Message malformed: not a valid value for dictionary value @ data['actions'][0]['choose'][0]['sequence'][0]['target']['entity_id']
 #            entity_id: >
 #              {{ expand(target_light) | map(attribute='entity_id') | list }}
             #entity_id: "{{ target_light }}"
