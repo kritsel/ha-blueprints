@@ -14,3 +14,8 @@ These blueprints can be used to transform the remote controls you use to operate
 Meaning that you can assign any kind of HomeAssistant action to the UP, STOP and DOWN commands.
 
 
+### Lights blueprints
+
+Control lights based on fixed time and/or sunset/sunrise.
+
+
