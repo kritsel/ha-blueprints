@@ -237,7 +237,7 @@ action:
                   value_template: "{{ off_2_type == 'time' }}"
                 - alias: 'switch OFF - period 2 - time trigger'
                   condition: trigger
-                  id: "t_off_1_time"
+                  id: "t_off_2_time"
             # OFF - period 2 - sunrise
             - and:
                 - alias: 'switch OFF - period 2 - type=sunrise'
