@@ -17,8 +17,8 @@ blueprint:
   author: https://github.com/kritsel
   homeassistant:
     min_version: "2024.6.0"
-  input:
 
+  input:
     lights_settings:
       name: "Lights"
       icon: mdi:lightbulb-outline
@@ -227,9 +227,9 @@ action:
                 - alias: 'switch OFF - period 1 - type=sunrise'
                   condition: template
                   value_template: "{{ off_1_type == 'sunrise' }}"
-                - alias: 'switch OFF - period 1 - sunset trigger'
+                - alias: 'switch OFF - period 1 - sunrise trigger'
                   condition: trigger
-                  id: "t_sunset"
+                  id: "t_sunrise"
             # OFF - period 2 - fixed time
             - and:
                 - alias: 'switch OFF - period 2 - type=fixed time'
@@ -243,9 +243,9 @@ action:
                 - alias: 'switch OFF - period 2 - type=sunrise'
                   condition: template
                   value_template: "{{ off_2_type == 'sunrise' }}"
-                - alias: 'switch OFF - period 2 - sunset trigger'
+                - alias: 'switch OFF - period 2 - sunrise trigger'
                   condition: trigger
-                  id: "t_sunset"
+                  id: "t_sunrise"
       sequence:
         - service: homeassistant.turn_off
           data: {}
