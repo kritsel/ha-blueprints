@@ -207,7 +207,9 @@ action:
         - service: light.turn_on
           data: {}
           target:
-            entity_id: "{{ target_light }}"
+            entity_id: >
+              {{ expand(target_light) | map(attribute='entity_id') | list }}
+            #entity_id: "{{ target_light }}"
         - service: logbook.log
           data:
             name: "Timer Blueprint"
