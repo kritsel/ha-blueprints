@@ -11,7 +11,7 @@ blueprint:
     or have lights on during a couple of hours in the evening (but off during the night) and on again for some hours in the morning (2 periods).
     
     
-    **Version: 0.2**
+    **Version: 0.3**
 
   domain: automation
   author: https://github.com/kritsel
