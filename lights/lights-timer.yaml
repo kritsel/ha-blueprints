@@ -24,7 +24,7 @@ blueprint:
       icon: mdi:lightbulb-outline
       collapsed: true
       input:
-        target_light:
+        target_lights:
           name: Lights
           description: >
             The lights (or switches) that will be switched on during the defined time periods.
@@ -137,7 +137,7 @@ blueprint:
             time:
 
 variables:
-  target_light: !input target_light
+  target_lights: !input target_lights
   on_1_type: !input on_1_type
   on_1_time: !input on_1_time
   off_1_type: !input off_1_type
@@ -170,85 +170,124 @@ triggers:
 action:
   # switch lights ON
   - choose:
-    - alias: 'switch lights ON'
+    - alias: 'switch ON'
       conditions:
-      - alias: 'ON - period 1 - fixed time'
+      - alias: 'switch ON'
         or:
         # ON - period 1 - fixed time
         - and:
-          - alias: 'on_1_type == time'
+          - alias: 'switch ON - period 1 - type=fixed time'
             condition: template
             value_template: "{{ on_1_type == 'time' }}"
-          - alias: 't_on_1_time'
+          - alias: 'switch ON - period 1 - time trigger'
             condition: trigger
             id: "t_on_1_time"
         # ON - period 1 - sunset
         - and:
-          - condition: template
+          - alias: 'switch ON - period 1 - type=sunset'
+            condition: template
             value_template: "{{ on_1_type == 'sunset' }}"
-          - condition: trigger
+          - alias: 'switch ON - period 1 - sunset trigger'
+            condition: trigger
             id: "t_sunset"
         # ON - period 2 - fixed time
         - and:
-          - condition: template
-            value_template: "{{ on_2_type == 'time' }}"
-          - condition: trigger
-            id: "t_on_2_time"
-        # ON - period 2 - sunset
+            - alias: 'switch ON - period 2 - type=fixed time'
+              condition: template
+              value_template: "{{ on_2_type == 'time' }}"
+            - alias: 'switch ON - period 2 - time trigger'
+              condition: trigger
+              id: "t_on_2_time"
+          # ON - period 2 - sunset
         - and:
-          - condition: template
-            value_template: "{{ on_2_type == 'sunset' }}"
-          - condition: trigger
-            id: "t_sunset"
+            - alias: 'switch ON - period 2 - type=sunset'
+              condition: template
+              value_template: "{{ on_2_type == 'sunset' }}"
+            - alias: 'switch ON - period 2 - sunset trigger'
+              condition: trigger
+              id: "t_sunset"
       sequence:
         - service: light.turn_on
           data: {}
-          target: !input target_light
-            # Message malformed: not a valid value for dictionary value @ data['actions'][0]['choose'][0]['sequence'][0]['target']['entity_id']
-#            entity_id: >
-#              {{ expand(target_light) | map(attribute='entity_id') | list }}
-            #entity_id: "{{ target_light }}"
-        - service: logbook.log
-          data:
-            name: "Timer Blueprint"
-            message: "Switch ON"
+          target: !input target_lights
 
-
-      # switch lights OFF
-    - conditions:
-      - or:
-        # OFF - period 1 - fixed time
-        - and:
-            - condition: template
-              value_template: "{{ off_1_type == 'time' }}"
-            - condition: trigger
-              id: "t_off_1_time"
-        # OFF - period 1 - sunrise
-        - and:
-            - condition: template
-              value_template: "{{ off_1_type == 'sunrise' }}"
-            - condition: trigger
-              id: "t_sunrise"
-        # OFF - period 2 - fixed time
-        - and:
-            - condition: template
-              value_template: "{{ off_2_type == 'time' }}"
-            - condition: trigger
-              id: "t_off_2_time"
-        # OFF - period 2 - sunrise
-        - and:
-            - condition: template
-              value_template: "{{ off_2_type == 'sunrise' }}"
-            - condition: trigger
-              id: "t_sunrise"
+    - alias: 'switch OFF'
+      conditions:
+        - alias: 'switch OFF'
+          or:
+            # OFF - period 1 - fixed time
+            - and:
+                - alias: 'switch OFF - period 1 - type=fixed time'
+                  condition: template
+                  value_template: "{{ off_1_type == 'time' }}"
+                - alias: 'switch OFF - period 1 - time trigger'
+                  condition: trigger
+                  id: "t_off_1_time"
+            # OFF - period 1 - sunrise
+            - and:
+                - alias: 'switch OFF - period 1 - type=sunrise'
+                  condition: template
+                  value_template: "{{ off_1_type == 'sunrise' }}"
+                - alias: 'switch OFF - period 1 - sunset trigger'
+                  condition: trigger
+                  id: "t_sunset"
+            # OFF - period 2 - fixed time
+            - and:
+                - alias: 'switch OFF - period 2 - type=fixed time'
+                  condition: template
+                  value_template: "{{ off_2_type == 'time' }}"
+                - alias: 'switch OFF - period 2 - time trigger'
+                  condition: trigger
+                  id: "t_off_1_time"
+            # OFF - period 2 - sunrise
+            - and:
+                - alias: 'switch OFF - period 2 - type=sunrise'
+                  condition: template
+                  value_template: "{{ off_2_type == 'sunrise' }}"
+                - alias: 'switch OFF - period 2 - sunset trigger'
+                  condition: trigger
+                  id: "t_sunset"
       sequence:
         - service: light.turn_off
-          data: { }
-          target:
-            entity_id: "{{ target_light }}"
-        - service: logbook.log
-          data:
-            name: "Timer Blueprint"
-            message: "Switch OFF"
+          data: {}
+          target: !input target_lights
+
+
+#      # switch lights OFF
+#    - conditions:
+#      - or:
+#        # OFF - period 1 - fixed time
+#        - and:
+#            - condition: template
+#              value_template: "{{ off_1_type == 'time' }}"
+#            - condition: trigger
+#              id: "t_off_1_time"
+#        # OFF - period 1 - sunrise
+#        - and:
+#            - condition: template
+#              value_template: "{{ off_1_type == 'sunrise' }}"
+#            - condition: trigger
+#              id: "t_sunrise"
+#        # OFF - period 2 - fixed time
+#        - and:
+#            - condition: template
+#              value_template: "{{ off_2_type == 'time' }}"
+#            - condition: trigger
+#              id: "t_off_2_time"
+#        # OFF - period 2 - sunrise
+#        - and:
+#            - condition: template
+#              value_template: "{{ off_2_type == 'sunrise' }}"
+#            - condition: trigger
+#              id: "t_sunrise"
+#      sequence:
+#        - service: light.turn_off
+#          data: { }
+#          target:
+#            entity_id: "{{ target_lights }}"
+#        - service: logbook.log
+#          data:
+#            name: "Timer Blueprint"
+#            message: "Switch OFF"
 
 mode: single
