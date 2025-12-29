@@ -173,13 +173,17 @@ triggers:
 action:
   # switch lights ON
   - choose:
-    - conditions:
-      - or:
+    - alias: 'switch lights ON'
+      conditions:
+      - alias: 'ON - period 1 - fixed time'
+        or:
         # ON - period 1 - fixed time
         - and:
-          - condition: template
+          - alias: 'on_1_type == time'
+            condition: template
             value_template: "{{ on_1_type == 'time' }}"
-          - condition: trigger
+          - alias: 't_on_1_time'
+            condition: trigger
             id: "t_on_1_time"
         # ON - period 1 - sunset
         - and:
