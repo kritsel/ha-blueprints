@@ -59,58 +59,66 @@ blueprint:
   # user provided inputs
   input:
     left_button:
-      left_button_entity:
-        name: Left button entity
-        description: The light/switch/binary_sensor entity representing the left button.
-        default: ''
-        selector:
-          entity:
-            filter:
-              - integration: rflink
-                domain:
-                  - light
-                  - switch
-                  - binary_sensor
-            multiple: false
-        action_left_button_on:
-          name: Left button ON
-          description: Action to run on left button ON click
-          default: [ ]
+      name: "Left button"
+      icon: mdi:light-switch
+      collapsed: false
+      input:
+        left_button_entity:
+          name: Left button entity
+          description: The light/switch/binary_sensor entity representing the left button.
+          default: ''
           selector:
-            action:
-        action_left_button_off:
-          name: Left button OFF
-          description: Action to run on left button OFF click
-          default: [ ]
-          selector:
-            action:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+          action_left_button_on:
+            name: Left button ON
+            description: Action to run on left button ON click
+            default: [ ]
+            selector:
+              action:
+          action_left_button_off:
+            name: Left button OFF
+            description: Action to run on left button OFF click
+            default: [ ]
+            selector:
+              action:
 
     right_button:
-      right_button_entity:
-        name: Right button entity
-        description: The light/switch/binary_sensor entity representing the right button.
-        default: ''
-        selector:
-          entity:
-            filter:
-              - integration: rflink
-                domain:
-                  - light
-                  - switch
-                  - binary_sensor
-            multiple: false
-      action_right_button_on:
-        name: Right button ON
-        description: Action to run on right button ON click
-        default: []
-        selector:
-          action:
-      action_right_button_off:
-        name: Right button OFF
-        description: Action to run on right button OFF click
-        default: []
-        selector:
-          action:
+      name: "Left button"
+      icon: mdi:light-switch
+      collapsed: false
+      input:
+        right_button_entity:
+          name: Right button entity
+          description: The light/switch/binary_sensor entity representing the right button.
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_right_button_on:
+          name: Right button ON
+          description: Action to run on right button ON click
+          default: []
+          selector:
+            action:
+        action_right_button_off:
+          name: Right button OFF
+          description: Action to run on right button OFF click
+          default: []
+          selector:
+            action:
 
 # Automation schema
 mode: single
