@@ -2,6 +2,9 @@ blueprint:
   name: RF 16-channel remote control - via RFLink
   domain: automation
   author: https://github.com/kritsel
+  homeassistant:
+    # min_version specified because this blueprint uses input sections which were introduced with this version
+    min_version: "2024.6.0"
   description: >
     This blueprint adds additional control possibilities to your RF (Radio Frequency) multi-channel remote,
     when you have integrated that remote into your HomeAssistant via the RFLink integration.
@@ -60,10 +63,6 @@ blueprint:
     for more blueprints in this RFLink series
     
     ℹ️ [my blueprints on GitHub](https://github.com/kritsel/ha-blueprints)
-
-  homeassistant:
-    # min_version specified because this blueprint uses input sections which were introduced with this version
-    min_version: "2024.6.0"
 
   # user provided inputs
   input:

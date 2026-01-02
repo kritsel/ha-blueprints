@@ -2,6 +2,7 @@ blueprint:
   name: RF single button switch - via RFLink
   domain: automation
   author: https://github.com/kritsel
+
   description: >
     # RF single button switch - via RFLink
     

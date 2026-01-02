@@ -2,6 +2,9 @@ blueprint:
   name: RF 3-channel remote control - via RFLink
   domain: automation
   author: https://github.com/kritsel
+  homeassistant:
+    # min_version specified because this blueprint uses input sections which were introduced with this version
+    min_version: "2024.6.0"
   description: >
     # RF 3-channel remote control - via RFLink
     
@@ -56,6 +59,7 @@ blueprint:
     for more blueprints in this RFLink series
     
     ℹ️ [my blueprints on GitHub](https://github.com/kritsel/ha-blueprints)
+
   # user provided inputs
   input:
     channel_1:
