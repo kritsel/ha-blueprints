@@ -61,6 +61,10 @@ blueprint:
     
     ℹ️ [my blueprints on GitHub](https://github.com/kritsel/ha-blueprints)
 
+  homeassistant:
+    # min_version specified because this blueprint uses input sections which were introduced with this version
+    min_version: "2024.6.0"
+
   # user provided inputs
   input:
     # entities representing the buttons of the RF switch

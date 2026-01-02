@@ -16,6 +16,7 @@ blueprint:
   domain: automation
   author: https://github.com/kritsel
   homeassistant:
+    # min_version specified because this blueprint uses input sections which were introduced with this version
     min_version: "2024.6.0"
 
   input:
