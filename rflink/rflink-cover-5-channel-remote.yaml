@@ -2,6 +2,9 @@ blueprint:
   name: RF 5-channel remote control for covers - via RFLink
   domain: automation
   author: https://github.com/kritsel
+  homeassistant:
+    # min_version specified because this blueprint uses input sections which were introduced with this version
+    min_version: "2024.6.0"
   description: >
     # THIS BLUEPRINT IS UNTESTED
     
@@ -45,154 +48,176 @@ blueprint:
     ℹ️ [my blueprints on GitHub](https://github.com/kritsel/ha-blueprints)
   # user provided inputs
   input:
-    # entities representing the channels supported by the RF remote control
-    channel_1_entity:
-      name: Channel 1 entity
-      description: The cover entity representing channel 1.
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - cover
-          multiple: false
-    channel_2_entity:
-      name: Channel 2 entity
-      description: The cover entity representing channel 2.
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - cover
-          multiple: false
-    channel_3_entity:
-      name: Channel 3 entity
-      description: The cover entity representing channel 3.
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - cover
-          multiple: false
-    channel_4_entity:
-      name: Channel 4 entity
-      description: The cover entity representing channel 4.
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - cover
-          multiple: false
-    channel_5_entity:
-      name: Channel 5 entity
-      description: The cover entity representing channel 5.
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - cover
-          multiple: false
-
-    # inputs for custom actions
-    action_channel_1_up:
-      name: Channel 1 UP
-      description: Action to run on channel 1 UP press.
-      default: []
-      selector:
-        action:
-    action_channel_1_stop:
-      name: Channel 1 STOP
-      description: Action to run on channel 1 STOP press.
-      default: [ ]
-      selector:
-        action:      
-    action_channel_1_down:
-      name: Channel 1 DOWN
-      description: Action to run on channel 1 DOWN press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_2_up:
-      name: Channel 2 UP
-      description: Action to run on channel 2 UP press.
-      default: []
-      selector:
-        action:
-    action_channel_2_stop:
-      name: Channel 2 STOP
-      description: Action to run on channel 2 STOP press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_2_down:
-      name: Channel 2 DOWN
-      description: Action to run on channel 2 DOWN press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_3_up:
-      name: Channel 3 UP
-      description: Action to run on channel 3 UP press.
-      default: []
-      selector:
-        action:
-    action_channel_3_stop:
-      name: Channel 3 STOP
-      description: Action to run on channel 3 STOP press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_3_down:
-      name: Channel 3 DOWN
-      description: Action to run on channel 3 DOWN press.
-      default: [ ]
-      selector:
-        action:       
-    action_channel_4_up:
-      name: Channel 4 UP
-      description: Action to run on channel 4 UP press.
-      default: []
-      selector:
-        action:
-    action_channel_4_stop:
-      name: Channel 4 STOP
-      description: Action to run on channel 4 STOP press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_4_down:
-      name: Channel 4 DOWN
-      description: Action to run on channel 4 DOWN press.
-      default: [ ]
-      selector:
-        action:         
-    action_channel_5_up:
-      name: Channel 5 UP
-      description: Action to run on channel 5 UP press.
-      default: []
-      selector:
-        action:
-    action_channel_5_stop:
-      name: Channel 5 STOP
-      description: Action to run on channel 5 STOP press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_5_down:
-      name: Channel 5 DOWN
-      description: Action to run on channel 5 DOWN press.
-      default: [ ]
-      selector:
-        action:
+    channel_1:
+      name: "Channel 1"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_1_entity:
+          name: Channel 1 entity
+          description: The cover entity representing channel 1.
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - cover
+              multiple: false
+        action_channel_1_up:
+          name: Channel 1 UP
+          description: Action to run on channel 1 UP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_1_stop:
+          name: Channel 1 STOP
+          description: Action to run on channel 1 STOP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_1_down:
+          name: Channel 1 DOWN
+          description: Action to run on channel 1 DOWN press.
+          default: [ ]
+          selector:
+            action:
+    channel_2:
+      name: "Channel 2"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_2_entity:
+          name: Channel 2 entity
+          description: The cover entity representing channel 2.
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - cover
+              multiple: false
+        action_channel_2_up:
+          name: Channel 2 UP
+          description: Action to run on channel 2 UP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_2_stop:
+          name: Channel 2 STOP
+          description: Action to run on channel 2 STOP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_2_down:
+          name: Channel 2 DOWN
+          description: Action to run on channel 2 DOWN press.
+          default: [ ]
+          selector:
+            action:
+    channel_3:
+      name: "Channel 3"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_3_entity:
+          name: Channel 3 entity
+          description: The cover entity representing channel 3.
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - cover
+              multiple: false
+        action_channel_3_up:
+          name: Channel 3 UP
+          description: Action to run on channel 3 UP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_3_stop:
+          name: Channel 3 STOP
+          description: Action to run on channel 3 STOP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_3_down:
+          name: Channel 3 DOWN
+          description: Action to run on channel 3 DOWN press.
+          default: [ ]
+          selector:
+            action:
+    channel_4:
+      name: "Channel 4"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_4_entity:
+          name: Channel 4 entity
+          description: The cover entity representing channel 4.
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - cover
+              multiple: false
+        action_channel_4_up:
+          name: Channel 4 UP
+          description: Action to run on channel 4 UP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_4_stop:
+          name: Channel 4 STOP
+          description: Action to run on channel 4 STOP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_4_down:
+          name: Channel 4 DOWN
+          description: Action to run on channel 4 DOWN press.
+          default: [ ]
+          selector:
+            action:
+    channel_5:
+      name: "Channel 5"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_5_entity:
+          name: Channel 5 entity
+          description: The cover entity representing channel 5.
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - cover
+              multiple: false
+        action_channel_5_up:
+          name: Channel 5 UP
+          description: Action to run on channel 5 UP press.
+          default: []
+          selector:
+            action:
+        action_channel_5_stop:
+          name: Channel 5 STOP
+          description: Action to run on channel 5 STOP press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_5_down:
+          name: Channel 5 DOWN
+          description: Action to run on channel 5 DOWN press.
+          default: [ ]
+          selector:
+            action:
 
 # Automation schema
 mode: single
