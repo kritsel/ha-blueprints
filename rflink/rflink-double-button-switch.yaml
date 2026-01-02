@@ -76,21 +76,21 @@ blueprint:
                     - switch
                     - binary_sensor
               multiple: false
-          action_left_button_on:
-            name: Left button ON
-            description: Action to run on left button ON click
-            default: [ ]
-            selector:
-              action:
-          action_left_button_off:
-            name: Left button OFF
-            description: Action to run on left button OFF click
-            default: [ ]
-            selector:
-              action:
+        action_left_button_on:
+          name: Left button ON
+          description: Action to run on left button ON click
+          default: [ ]
+          selector:
+            action:
+        action_left_button_off:
+          name: Left button OFF
+          description: Action to run on left button OFF click
+          default: [ ]
+          selector:
+            action:
 
     right_button:
-      name: "Left button"
+      name: "Right button"
       icon: mdi:light-switch
       collapsed: false
       input:
