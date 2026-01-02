@@ -67,434 +67,504 @@ blueprint:
 
   # user provided inputs
   input:
-    # entities representing the buttons of the RF switch
-    channel_I_1_entity:
-      name: Channel I-1 entity
-      description: The light/switch/binary_sensor entity representing channel I-1 (1).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_I_2_entity:
-      name: Channel I-2 entity
-      description: The light/switch/binary_sensor entity representing channel I-2 (2).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_I_3_entity:
-      name: Channel I-3 entity
-      description: The light/switch/binary_sensor entity representing channel I-3 (3).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_I_4_entity:
-      name: Channel I-4 entity
-      description: The light/switch/binary_sensor entity representing channel I-4 (4).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_II_1_entity:
-      name: Channel II-1 entity
-      description: The light/switch/binary_sensor entity representing channel II-1 (5).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_II_2_entity:
-      name: Channel II-2 entity
-      description: The light/switch/binary_sensor entity representing channel II-2 (6).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_II_3_entity:
-      name: Channel II-3 entity
-      description: The light/switch/binary_sensor entity representing channel II-3 (7).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_II_4_entity:
-      name: Channel II-4 entity
-      description: The light/switch/binary_sensor entity representing channel II-4 (8).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_III_1_entity:
-      name: Channel III-1 entity
-      description: The light/switch/binary_sensor entity representing channel III-1 (9).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_III_2_entity:
-      name: Channel III-2 entity
-      description: The light/switch/binary_sensor entity representing channel III-2 (10).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_III_3_entity:
-      name: Channel III-3 entity
-      description: The light/switch/binary_sensor entity representing channel III-3 (11).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_III_4_entity:
-      name: Channel III-4 entity
-      description: The light/switch/binary_sensor entity representing channel III-4 (12).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_IV_1_entity:
-      name: Channel IV-1 entity
-      description: The light/switch/binary_sensor entity representing channel IV-1 (13).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_IV_2_entity:
-      name: Channel IV-2 entity
-      description: The light/switch/binary_sensor entity representing channel IV-2 (14).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_IV_3_entity:
-      name: Channel IV-3 entity
-      description: The light/switch/binary_sensor entity representing channel IV-3 (15).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-    channel_IV_4_entity:
-      name: Channel IV-4 entity
-      description: The light/switch/binary_sensor entity representing channel IV-4 (16).
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false   
-    channel_all_entity:
-      name: All/Group channel entity
-      description: The light/switch/binary_sensor entity representing the All or Group channel.
-      default: ''
-      selector:
-        entity:
-          filter:
-            - integration: rflink
-              domain:
-                - light
-                - switch
-                - binary_sensor
-          multiple: false
-
-    # inputs for custom actions
-    action_channel_I_1_on:
-      name:  Channel I-1 ON
-      description: Action to run on channel I-1 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_I_1_off:
-      name:  Channel I-1 OFF
-      description: Action to run on channel I-1 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_I_2_on:
-      name:  Channel I-2 ON
-      description: Action to run on channel I-2 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_I_2_off:
-      name:  Channel I-2 OFF
-      description: Action to run on channel I-2 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_I_3_on:
-      name:  Channel I-3 ON
-      description: Action to run on channel I-3 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_I_3_off:
-      name:  Channel I-3 OFF
-      description: Action to run on channel I-3 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_I_4_on:
-      name:  Channel I-4 ON
-      description: Action to run on channel I-4 ON press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_I_4_off:
-      name:  Channel I-4 OFF
-      description: Action to run on channel I-4 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_II_1_on:
-      name:  Channel II-1 ON
-      description: Action to run on channel II-1 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_II_1_off:
-      name:  Channel II-1 OFF
-      description: Action to run on channel II-1 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_II_2_on:
-      name:  Channel II-2 ON
-      description: Action to run on channel II-2 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_II_2_off:
-      name:  Channel II-2 OFF
-      description: Action to run on channel II-2 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_II_3_on:
-      name:  Channel II-3 ON
-      description: Action to run on channel II-3 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_II_3_off:
-      name:  Channel II-3 OFF
-      description: Action to run on channel II-3 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_II_4_on:
-      name:  Channel II-4 ON
-      description: Action to run on channel II-4 ON press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_II_4_off:
-      name:  Channel II-4 OFF
-      description: Action to run on channel II-4 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_III_1_on:
-      name:  Channel III-1 ON
-      description: Action to run on channel III-1 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_III_1_off:
-      name:  Channel III-1 OFF
-      description: Action to run on channel III-1 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_III_2_on:
-      name:  Channel III-2 ON
-      description: Action to run on channel III-2 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_III_2_off:
-      name:  Channel III-2 OFF
-      description: Action to run on channel III-2 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_III_3_on:
-      name:  Channel III-3 ON
-      description: Action to run on channel III-3 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_III_3_off:
-      name:  Channel III-3 OFF
-      description: Action to run on channel III-3 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_III_4_on:
-      name:  Channel III-4 ON
-      description: Action to run on channel III-4 ON press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_III_4_off:
-      name:  Channel III-4 OFF
-      description: Action to run on channel III-4 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_IV_1_on:
-      name:  Channel IV-1 ON
-      description: Action to run on channel IV-1 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_IV_1_off:
-      name:  Channel IV-1 OFF
-      description: Action to run on channel IV-1 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_IV_2_on:
-      name:  Channel IV-2 ON
-      description: Action to run on channel IV-2 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_IV_2_off:
-      name:  Channel IV-2 OFF
-      description: Action to run on channel IV-2 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_IV_3_on:
-      name:  Channel IV-3 ON
-      description: Action to run on channel IV-3 ON press.
-      default: []
-      selector:
-        action:
-    action_channel_IV_3_off:
-      name:  Channel IV-3 OFF
-      description: Action to run on channel IV-3 OFF press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_IV_4_on:
-      name:  Channel IV-4 ON
-      description: Action to run on channel IV-4 ON press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_IV_4_off:
-      name:  Channel IV-4 OFF
-      description: Action to run on channel IV-4 OFF press.
-      default: [ ]
-      selector:
-        action:          
-    action_channel_all_on:
-      name:  All/Group ON
-      description: Action to run on All/Group ON press.
-      default: [ ]
-      selector:
-        action:
-    action_channel_all_off:
-      name:  All/Group OFF
-      description: Action to run on All/Group OFF press.
-      default: [ ]
-      selector:
-        action:
+    channel_I_1:
+      name: "Channel I-1"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_I_1_entity:
+          name: Channel I-1 entity
+          description: The light/switch/binary_sensor entity representing channel I-1 (1).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_I_1_on:
+          name:  Channel I-1 ON
+          description: Action to run on channel I-1 ON press.
+          default: []
+          selector:
+            action:
+        action_channel_I_1_off:
+          name:  Channel I-1 OFF
+          description: Action to run on channel I-1 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_I_2:
+      name: "Channel I-2"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_I_2_entity:
+          name: Channel I-2 entity
+          description: The light/switch/binary_sensor entity representing channel I-2 (2).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_I_2_on:
+          name: Channel I-2 ON
+          description: Action to run on channel I-2 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_I_2_off:
+          name: Channel I-2 OFF
+          description: Action to run on channel I-2 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_I_3:
+      name: "Channel I-3"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_I_3_entity:
+          name: Channel I-3 entity
+          description: The light/switch/binary_sensor entity representing channel I-3 (3).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_I_3_on:
+          name: Channel I-3 ON
+          description: Action to run on channel I-3 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_I_3_off:
+          name: Channel I-3 OFF
+          description: Action to run on channel I-3 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_I_4:
+      name: "Channel I-4"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_I_4_entity:
+          name: Channel I-4 entity
+          description: The light/switch/binary_sensor entity representing channel I-4 (4).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_I_4_on:
+          name: Channel I-4 ON
+          description: Action to run on channel I-4 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_I_4_off:
+          name: Channel I-4 OFF
+          description: Action to run on channel I-4 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_II_1:
+      name: "Channel II-1"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_II_1_entity:
+          name: Channel II-1 entity
+          description: The light/switch/binary_sensor entity representing channel II-1 (5).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+    channel_II_2:
+      name: "Channel II-2"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_II_2_entity:
+          name: Channel II-2 entity
+          description: The light/switch/binary_sensor entity representing channel II-2 (6).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_II_1_on:
+          name: Channel II-1 ON
+          description: Action to run on channel II-1 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_II_1_off:
+          name: Channel II-1 OFF
+          description: Action to run on channel II-1 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_II_3:
+      name: "Channel II-3"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_II_3_entity:
+          name: Channel II-3 entity
+          description: The light/switch/binary_sensor entity representing channel II-3 (7).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_II_3_on:
+          name: Channel II-3 ON
+          description: Action to run on channel II-3 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_II_3_off:
+          name: Channel II-3 OFF
+          description: Action to run on channel II-3 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_II_4:
+      name: "Channel II-4"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_II_4_entity:
+          name: Channel II-4 entity
+          description: The light/switch/binary_sensor entity representing channel II-4 (8).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_II_4_on:
+          name: Channel II-4 ON
+          description: Action to run on channel II-4 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_II_4_off:
+          name: Channel II-4 OFF
+          description: Action to run on channel II-4 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_III_1:
+      name: "Channel III-1"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_III_1_entity:
+          name: Channel III-1 entity
+          description: The light/switch/binary_sensor entity representing channel III-1 (9).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_III_1_on:
+          name: Channel III-1 ON
+          description: Action to run on channel III-1 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_III_1_off:
+          name: Channel III-1 OFF
+          description: Action to run on channel III-1 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_III_2:
+      name: "Channel III-2"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_III_2_entity:
+          name: Channel III-2 entity
+          description: The light/switch/binary_sensor entity representing channel III-2 (10).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_III_2_on:
+          name: Channel III-2 ON
+          description: Action to run on channel III-2 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_III_2_off:
+          name: Channel III-2 OFF
+          description: Action to run on channel III-2 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_III_3:
+      name: "Channel III-3"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_III_3_entity:
+          name: Channel III-3 entity
+          description: The light/switch/binary_sensor entity representing channel III-3 (11).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_III_3_on:
+          name: Channel III-3 ON
+          description: Action to run on channel III-3 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_III_3_off:
+          name: Channel III-3 OFF
+          description: Action to run on channel III-3 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_III_4:
+      name: "Channel III-4"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_III_4_entity:
+          name: Channel III-4 entity
+          description: The light/switch/binary_sensor entity representing channel III-4 (12).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_III_4_on:
+          name: Channel III-4 ON
+          description: Action to run on channel III-4 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_III_4_off:
+          name: Channel III-4 OFF
+          description: Action to run on channel III-4 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_IV_1:
+      name: "Channel IV-1"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_IV_1_entity:
+          name: Channel IV-1 entity
+          description: The light/switch/binary_sensor entity representing channel IV-1 (13).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_IV_1_on:
+          name: Channel IV-1 ON
+          description: Action to run on channel IV-1 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_IV_1_off:
+          name: Channel IV-1 OFF
+          description: Action to run on channel IV-1 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_IV_2:
+      name: "Channel IV-2"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_IV_2_entity:
+          name: Channel IV-2 entity
+          description: The light/switch/binary_sensor entity representing channel IV-2 (14).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_IV_2_on:
+          name: Channel IV-2 ON
+          description: Action to run on channel IV-2 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_IV_2_off:
+          name: Channel IV-2 OFF
+          description: Action to run on channel IV-2 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_IV_3:
+      name: "Channel IV-3"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_IV_3_entity:
+          name: Channel IV-3 entity
+          description: The light/switch/binary_sensor entity representing channel IV-3 (15).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_IV_3_on:
+          name: Channel IV-3 ON
+          description: Action to run on channel IV-3 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_IV_3_off:
+          name: Channel IV-3 OFF
+          description: Action to run on channel IV-3 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_IV_4:
+      name: "Channel IV-4"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_IV_4_entity:
+          name: Channel IV-4 entity
+          description: The light/switch/binary_sensor entity representing channel IV-4 (16).
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_IV_4_on:
+          name: Channel IV-4 ON
+          description: Action to run on channel IV-4 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_IV_4_off:
+          name: Channel IV-4 OFF
+          description: Action to run on channel IV-4 OFF press.
+          default: [ ]
+          selector:
+            action:
+    channel_all:
+      name: "Channel all"
+      icon: mdi:toggle-switch
+      collapsed: false
+      input:
+        channel_all_entity:
+          name: All/Group channel entity
+          description: The light/switch/binary_sensor entity representing the All or Group channel.
+          default: ''
+          selector:
+            entity:
+              filter:
+                - integration: rflink
+                  domain:
+                    - light
+                    - switch
+                    - binary_sensor
+              multiple: false
+        action_channel_all_on:
+          name: All/Group ON
+          description: Action to run on All/Group ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_all_off:
+          name: All/Group OFF
+          description: Action to run on All/Group OFF press.
+          default: [ ]
+          selector:
+            action:
 
 # Automation schema
 mode: single
