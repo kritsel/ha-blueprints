@@ -205,6 +205,18 @@ blueprint:
                     - switch
                     - binary_sensor
               multiple: false
+        action_channel_II_1_on:
+          name: Channel II-1 ON
+          description: Action to run on channel II-1 ON press.
+          default: [ ]
+          selector:
+            action:
+        action_channel_II_1_off:
+          name: Channel II-1 OFF
+          description: Action to run on channel II-1 OFF press.
+          default: [ ]
+          selector:
+            action:
     channel_II_2:
       name: "Channel II-2"
       icon: mdi:toggle-switch
@@ -223,15 +235,15 @@ blueprint:
                     - switch
                     - binary_sensor
               multiple: false
-        action_channel_II_1_on:
-          name: Channel II-1 ON
-          description: Action to run on channel II-1 ON press.
+        action_channel_II_2_on:
+          name: Channel II-2 ON
+          description: Action to run on channel II-2 ON press.
           default: [ ]
           selector:
             action:
-        action_channel_II_1_off:
-          name: Channel II-1 OFF
-          description: Action to run on channel II-1 OFF press.
+        action_channel_II_2_off:
+          name: Channel II-2 OFF
+          description: Action to run on channel II-2 OFF press.
           default: [ ]
           selector:
             action:
