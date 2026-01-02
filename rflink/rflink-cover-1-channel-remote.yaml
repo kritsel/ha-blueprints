@@ -1,5 +1,5 @@
 blueprint:
-  name: RF 5-channel remote control for covers - via RFLink
+  name: RF single channel remote control for covers - via RFLink
   domain: automation
   author: https://github.com/kritsel
   description: >
