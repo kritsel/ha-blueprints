@@ -205,7 +205,7 @@ conditions:
   # and does the event contain a valid state?
   - condition: template
     value_template: >-
-      {{trigger.event.data.state in ["on", "off"] }}
+      {{trigger.event.data.state in ["on", "off", "allon", "alloff"] }}
 
 actions:
   - choose:
@@ -277,11 +277,11 @@ actions:
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == allon}}
+                      {{trigger.event.data.state == "allon"}}
                 sequence: !input action_channel_all_on
               # 'off' click
               - conditions:
                   - condition: template
                     value_template: >-
-                      {{trigger.event.data.state == alloff}}
+                      {{trigger.event.data.state == "alloff"}}
                 sequence: !input action_channel_all_off
