@@ -613,7 +613,7 @@ conditions:
   # and does the event contain a valid state?
   - condition: template
     value_template: >-
-      {{trigger.event.data.state in ["on", "off"] }}
+      {{trigger.event.data.state in ["on", "off", "allon", "alloff"] }}
 
 actions:
   - choose:
